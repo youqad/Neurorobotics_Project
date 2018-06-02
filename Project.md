@@ -22,7 +22,7 @@ abstract: 'Final Project: Inferring Space from Sensorimotor Dependencies'
 
 #### Original article: « Is There Something Out There? Inferring Space from Sensorimotor Dependencies » (D. Philipona, J.K. O'Regan, J.-P. Nadal)
 
-- [Jupyter Notebook](https://colab.research.google.com/github/youqad/Neurorobotics_Project/blob/master/Inferring_Space_from_Sensorimotor_Dependencies.ipynb)
+- [Jupyter Notebook](http://bit.ly/2kJwH5w)
 - [Online Version](http://younesse.net/Neuro-robotique/Project.md)
 
 $$
