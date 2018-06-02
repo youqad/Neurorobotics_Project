@@ -54,8 +54,8 @@ $$C_{i,k}$$|relative position of photosensor $k$ within eye $i$
 $$d ≝ (d_1, \ldots,d_q)$$|apertures of diaphragms
 $$L ≝ (L_1,\ldots,L_p)$$|positions of the lights
 $$θ ≝ (θ_1, \ldots, θ_p)$$|luminances of the lights
-$$S^e{i,k}$$|sensory input from exteroceptive sensor $k$ of eye $i$
-$$S^i_p$$|sensory input from proprioceptive sensor $i$
+$$S^e_{i,k}$$|sensory input from exteroceptive sensor $k$ of eye $i$
+$$S^p_i$$|sensory input from proprioceptive sensor $i$
 $$M, E$$|motor command and environmental control vector
 
 ### Computing the motor commands
@@ -77,3 +77,30 @@ where
 - $σ$ is an arbitrary nonlinearity (e.g. the hyperbolic tangent function)
 - the $C_{i,k}$ are drawn from a centered normal distribution whose variance (which can be understood as the size of the retina) is so that the sensory changes resulting from a rotation of the eye are of the same order of magnitude as the ones resulting from a translation of the eye
 - $θ$ and $d$ are constants drawn at random in the interval $[0.5, 1]$
+
+## Organism 1
+
+**Characteristics**|**Value**
+-|-
+Dimensions of motor commands|$40$
+Dimensions of proprioceptive inputs|$16 \quad (= 4×4)$
+Dimensions of exteroceptive inputs|$40 \quad (= 2 × 20)$
+Number of eyes|$2$
+Number of joints|$4$
+Diaphragms|None
+Number of lights|$3$
+Light luminance|Fixed
+
+1. The arm has
+
+    - $4$ joints
+
+        - each of which has $4$ **proprioceptive** sensors (whose output depended on the position of the joint)
+    - $2$ eyes (for each of them: $3$ spatial and $3$ orientation coordinates)
+
+        - on which there are $20$ omnidirectionally sensitive photosensors (**exteroceptive**)
+2. the motor command is $40$-dimensional  
+
+3. the environment consists of:
+
+    - $3$ lights ($3$ spatial coordinates and $3$ luminance values for each of them)
