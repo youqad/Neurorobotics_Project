@@ -65,8 +65,8 @@ $$
 \begin{align*}
 (Q,P,a) &≝ σ(W_1 · σ(W_2 · M − μ_2)−μ_1)\\
 L &≝ σ(V_1 ·σ(V_2 · E − ν_2) − ν_1)\\
-S^e_{i,k} &≝ d_i \sum\limits_{ j } \frac{θ_j}{\Vert P_i + Rot(a_i^θ, a_i^φ, a_i^ψ) \cdot C_{i,k} - L_j \Vert^2}\\
-S^p_i &≝ σ(U_1 · σ(U_2 · M − τ_2) − τ_1)
+∀1≤ k ≤ p, 1≤i≤p', \quad S^e_{i,k} &≝ d_i \sum\limits_{ j } \frac{θ_j}{\Vert P_i + Rot(a_i^θ, a_i^φ, a_i^ψ) \cdot C_{i,k} - L_j \Vert^2}\\
+∀1≤ i ≤ q'q, \quad S^p_i &≝ σ(U_1 · σ(U_2 · Q − τ_2) − τ_1)
 \end{align*}
 $$
 
