@@ -29,7 +29,7 @@ $$
 \newcommand{\T}{ {\raise{0.7ex}{\intercal}}}
 $$
 
-
+W
 ## The Algorithm
 
 1. Proprioceptive input is separated from exteroceptive input by noting that proprioceptive input remains silent when no motor commands are given, whereas exteroceptive input changes because of environmental change.
@@ -46,27 +46,28 @@ $$
 
 Notation|Meaning
 -|-
-$$Q ≝ (Q_1, \ldots, Q_q)$$|positions of the joints
-$$P ≝ (P_1, \ldots, P_p)$$|positions of the eyes
+$$Q ≝ (Q_1, \ldots, Q_{3q})$$|positions of the joints
+$$P ≝ (P_1, \ldots, P_{3p})$$|positions of the eyes
 $$a^θ_i, a^φ_i, a^ψ_i$$|Euler angles for the orientation of eye i
 $$Rot(a^θ_i, a^φ_i, a^ψ_i)$$|rotation matrix for eye i
 $$C_{i,k}$$|relative position of photosensor $k$ within eye $i$
-$$d ≝ (d_1, \ldots,d_q)$$|apertures of diaphragms
-$$L ≝ (L_1,\ldots,L_p)$$|positions of the lights
-$$θ ≝ (θ_1, \ldots, θ_p)$$|luminances of the lights
+$$d ≝ (d_1, \ldots,d_p)$$|apertures of diaphragms
+$$L ≝ (L_1,\ldots,L_{3r})$$|positions of the lights
+$$θ ≝ (θ_1, \ldots, θ_r)$$|luminances of the lights
 $$S^e_{i,k}$$|sensory input from exteroceptive sensor $k$ of eye $i$
 $$S^p_i$$|sensory input from proprioceptive sensor $i$
 $$M, E$$|motor command and environmental control vector
 
-### Computing the motor commands
+
+### Computing the sensory inputs
 
 
 $$
 \begin{align*}
 (Q,P,a) &≝ σ(W_1 · σ(W_2 · M − μ_2)−μ_1)\\
 L &≝ σ(V_1 ·σ(V_2 · E − ν_2) − ν_1)\\
-∀1≤ k ≤ p, 1≤i≤p', \quad S^e_{i,k} &≝ d_i \sum\limits_{ j } \frac{θ_j}{\Vert P_i + Rot(a_i^θ, a_i^φ, a_i^ψ) \cdot C_{i,k} - L_j \Vert^2}\\
-∀1≤ i ≤ q'q, \quad S^p_i &≝ σ(U_1 · σ(U_2 · Q − τ_2) − τ_1)
+∀1≤ k ≤ p', 1≤i≤p, \quad S^e_{i,k} &≝ d_i \sum\limits_{ j } \frac{θ_j}{\Vert P_i + Rot(a_i^θ, a_i^φ, a_i^ψ) \cdot C_{i,k} - L_j \Vert^2}\\
+(S^p_i)_{1≤ i ≤ q'q} &≝ σ(U_1 · σ(U_2 · Q − τ_2) − τ_1)
 \end{align*}
 $$
 
@@ -78,13 +79,15 @@ where
 - the $C_{i,k}$ are drawn from a centered normal distribution whose variance (which can be understood as the size of the retina) is so that the sensory changes resulting from a rotation of the eye are of the same order of magnitude as the ones resulting from a translation of the eye
 - $θ$ and $d$ are constants drawn at random in the interval $[0.5, 1]$
 
+
 ## Organism 1
 
-**Characteristics**|**Value**
+**Parameter**|**Value**
 -|-
-Dimensions of motor commands|$40$
-Dimensions of proprioceptive inputs|$16 \quad (= 4×4)$
-Dimensions of exteroceptive inputs|$40 \quad (= 2 × 20)$
+Dimension of motor commands|$40$
+Dimension of environmental control vector|$40$
+Dimension of proprioceptive inputs|$16 \quad (= 4×4)$
+Dimension of exteroceptive inputs|$40 \quad (= 2 × 20)$
 Number of eyes|$2$
 Number of joints|$4$
 Diaphragms|None
@@ -104,3 +107,6 @@ Light luminance|Fixed
 3. the environment consists of:
 
     - $3$ lights ($3$ spatial coordinates and $3$ luminance values for each of them)
+
+
+> **NB**: Changes made: typos indices, number of proprioceptive inputs, $S_i^p$ computed with $Q$
