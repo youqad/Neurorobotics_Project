@@ -1,5 +1,39 @@
 from .utils import *
 
+#------------------------------------------------------------
+# Parameters
+
+M_size = 40
+E_size = 40
+
+# Number of Joints / q
+nb_joints = 4
+
+# Number of eyes / p
+nb_eyes = 2
+
+# Number of lights / r
+nb_lights = 3
+
+# Number of exteroceptive photosensors / p'
+extero = 20
+
+# Number of proprioceptive sensors / q'
+proprio = 4
+
+
+# Sensory inputs were generated from...
+nb_generating_motor_commands = 50
+nb_generating_env_positions = 50
+
+# Neighborhood size of the linear approximation:
+# Motor commands/Environmental positions drawn from normal distribution
+# with mean zero and standard deviation... 
+neighborhood_size = 1e-8
+# (Coordinates differing from 0 by more than the std deviation are set equal to 0)
+
+sigma = np.tanh
+
 class Organism1:
   """
   Organism 1:

@@ -2,40 +2,6 @@ import numpy as np
 from sklearn import preprocessing
 
 #------------------------------------------------------------
-#@title Parameters
-
-M_size = 40 #@param {type:"slider", min:10, max:100, step:5}
-E_size = 40 #@param {type:"slider", min:10, max:100, step:5}
-
-# Number of Joints / q
-nb_joints = 4 #@param {type:"slider", min:3, max:5, step:1}
-
-# Number of eyes / p
-nb_eyes = 2 #@param {type:"slider", min:2, max:5, step:1}
-
-# Number of lights / r
-nb_lights = 3 #@param {type:"slider", min:2, max:5, step:1}
-
-# Number of exteroceptive photosensors / p'
-extero = 20 #@param {type:"slider", min:15, max:25, step:1}
-
-# Number of proprioceptive sensors / q'
-proprio = 4 #@param {type:"slider", min:3, max:5, step:1}
-
-
-# Sensory inputs were generated from...
-nb_generating_motor_commands = 50 #@param {type:"slider", min:10, max:200, step:10}
-nb_generating_env_positions = 50 #@param {type:"slider", min:10, max:200, step:10}
-
-# Neighborhood size of the linear approximation:
-# Motor commands/Environmental positions drawn from normal distribution
-# with mean zero and standard deviation... 
-neighborhood_size = 1e-8
-# (Coordinates differing from 0 by more than the std deviation are set equal to 0)
-
-sigma = np.tanh
-
-#------------------------------------------------------------
 # Rotation matrix computation
 
 def Rot(euler_angles):
