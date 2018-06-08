@@ -137,14 +137,15 @@ $$
 <!-- slide -->
 <div style="text-align:center">
 
-## Dimensionality Reduction & Visualization of Representations
+## Is there something out there?
 
-##### Younesse Kaddar
+### Inferring Space from Sensorimotor Dependencies
 
-##### *Studied articles:* [Visualizing MNIST](http://colah.github.io/posts/2014-10-Visualizing-MNIST/), [Visualizing Representations](http://colah.github.io/posts/2015-01-Visualizing-Representations/) (C. Olah), [Visualizing Data using t-SNE](http://jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf) (L. Van der Maaten & G. Hinton) + Isomap & LLE
+##### Kexin Ren & Younesse Kaddar
 
+##### *Studied article:* [](http://www.rctn.org/bruno/3DFM/Philipona-NC03.pdf)
 
-[Final Summary](http://younesse.net/Computer-vision/Summary/) / [Associated Jupyter Notebook](/ipynb/comp-vision/Visualization/Final_Presentation_Visualization.html)
+[Final Summary](http://younesse.net/Neuro-robotique/Summary/) / [Associated Jupyter Notebook](/ipynb/neurorobotics/Inferring_Space_from_Sensorimotor_Dependencies.ipynb.html)
 
 
 </div>
@@ -153,24 +154,22 @@ ____
 
 <div style="text-align:left">
 
-### Introduction: Dimensionality reduction
+### Introduction:
 
 ____
 
-### I. MDS, Sammon's mapping & Force-directed Graph Drawing
+### I.
 
-### II. Principal component analysis (PCA)
+### II.
 
-### III. Isomap
+### III.
 
-### IV. Locally-Linear Embedding (LLE)
-
-### V. t-SNE & Meta-SNE
+### IV.
 
 </div>
 
 
-<!-- slide data-transition:"convex" data-transition-speed:"slow" -->
+<!-- slide data-transition="convex" data-transition-speed="slow" -->
 
 ### I. Introduction
 
@@ -183,7 +182,7 @@ ____
 <img src="manifold.png" alt="Manifold hypothesis" style="maxheight: 900px; border:none" class="fragment fade-in" data-fragment-index="3"/>
 
 
-<!-- slide data-transition:"zoom" data-transition-speed:"slow" -->
+<!-- slide data-transition="zoom" data-transition-speed="slow" -->
 
 ## I.A -  Multidimensional Scaling (MDS)
 
@@ -195,7 +194,7 @@ ____
 $$\sum\limits_{x_i ≠ x_j \text{ data points}} \Big(\underbrace{d^\ast(x_i, x_j)}_{\text{dist. in original space}} - \overbrace{d(x_i, x_j)}^{\text{dist. in visualization}}\Big)^2$$
 </div>
 
-<!-- slide data-transition:"zoom" data-transition-speed:"slow" vertical:true -->
+<!-- slide data-transition="zoom" data-transition-speed="slow" vertical=true -->
 
 ## I.B - Sammon's mapping
 
@@ -209,7 +208,7 @@ $$\sum\limits_{x_i ≠ x_j \text{ data points}} \Big(\frac{d^\ast(x_i, x_j) - d(
 </div>
 
 
-<!-- slide data-transition:"zoom" data-transition-speed:"slow" vertical:true -->
+<!-- slide data-transition="zoom" data-transition-speed="slow" vertical=true -->
 
 ## I.C - Force-directed Graph Drawing
 
@@ -228,7 +227,7 @@ As with <span class="fragment highlight-red" data-fragment-index="1">electric po
 
 <span class="fragment highlight-red" data-fragment-index="4">$\displaystyle \sum\limits_{x_i ≠ x_j \text{ data points}} \frac{1}{d^\ast(x_i, x_j)}$</span> $+$ <span class="fragment highlight-blue" data-fragment-index="5">$\displaystyle \sum\limits_{x_i, x_j \text{ data points}} \frac 1 2 \Big(d^\ast(x_i, x_j) - d(x_i, x_j)\Big)^2$</span>
 
-<!-- slide data-transition:"concave" data-transition-speed:"slow" -->
+<!-- slide data-transition="concave" data-transition-speed="slow" -->
 
 ### II. Principal component analysis (PCA)
 
@@ -236,7 +235,7 @@ As with <span class="fragment highlight-red" data-fragment-index="1">electric po
 
 <img src="PCA_drawing.png" alt="PCA" style="maxheight: 900px; border:none" class="fragment fade-in" data-fragment-index="1"/>
 
-<!-- slide data-transition:"convex" data-transition-speed:"slow" -->
+<!-- slide data-transition="convex" data-transition-speed="slow" -->
 
 ### III. Isomap
 
@@ -249,7 +248,7 @@ As with <span class="fragment highlight-red" data-fragment-index="1">electric po
 <img src="Isomap_drawing.png" alt="Isomap" style="maxheight: 300px; border:none" class="fragment fade-in" data-fragment-index="1"/>
 
 
-<!-- slide data-transition:"convex" data-transition-speed:"slow" -->
+<!-- slide data-transition="convex" data-transition-speed="slow" -->
 
 ### IV. Locally-Linear Embedding (LLE)
 
@@ -261,7 +260,7 @@ As with <span class="fragment highlight-red" data-fragment-index="1">electric po
 2. Map each data point $x_i$ to a point $y_i$ in the vizualization, s.t. the $y_k$'s minimize $$\sum\limits_{y_i \text{ data point}} \Big\vert \; y_i - \sum\limits_{y_j \text{ neighbor of } y_i} W_{i, j} y_j \;\Big\vert^2$$
 
 
-<!-- slide data-transition:"convex" data-transition-speed:"slow" -->
+<!-- slide data-transition="convex" data-transition-speed="slow" -->
 
 ## t-Distributed Stochastic Neighbor Embedding (t-SNE)
 
@@ -282,7 +281,7 @@ Map points are:
 
 <em class="fragment fade-in" data-fragment-index="2">Image courtesy of <a src="https://statquest.org/2017/09/18/statquest-t-sne-clearly-explained/">statquest.org</a></em>
 
-<!-- slide data-transition:"convex" data-transition-speed:"slow" vertical:true data-background-image:dark-background.jpg -->
+<!-- slide data-transition="convex" data-transition-speed="slow" vertical=true data-background-image=dark-background.jpg -->
 
 
 ### Step 1
@@ -300,7 +299,7 @@ $$p_{j\mid i} ≝ \frac{\exp(-\vert\vert x_i-x_j\vert\vert^2/2\sigma^2)}{\sum_{k
 
 <img src="tSNE_step1.png" alt="t-SNE" style="maxheight: 500px; border:none" class="fragment fade-in" data-fragment-index="1"/>
 
-<!-- slide data-transition:"convex" data-transition-speed:"slow" vertical:true data-background-image:dark-background.jpg -->
+<!-- slide data-transition="convex" data-transition-speed="slow" vertical=true data-background-image=dark-background.jpg -->
 
 ### Step 2
 
@@ -312,7 +311,7 @@ $$p_{i,j} ≝ \frac{p_{j\mid i} + p_{i\mid j}}{2n}$$
 
 <img src="tSNE_step3.png" alt="t-SNE" style="margin-right: 15%; border:none; float: right" class="fragment fade-in" data-fragment-index="2"/>
 
-<!-- slide data-transition:"convex" data-transition-speed:"slow" vertical:true data-background-image:dark-background.jpg -->
+<!-- slide data-transition="convex" data-transition-speed="slow" vertical=true data-background-image=dark-background.jpg -->
 
 ### Step 3
 
@@ -334,7 +333,7 @@ $$p_{i,j} ≝ \frac{p_{j\mid i} + p_{i\mid j}}{2n}$$
 <img src="tSNE_step3bis.png" alt="t-SNE" style="border:none;" class="fragment fade-in" data-fragment-index="3"/>
 
 
-<!-- slide data-transition:"convex" data-transition-speed:"slow" vertical:true data-background-image:dark-background.jpg -->
+<!-- slide data-transition="convex" data-transition-speed="slow" vertical=true data-background-image=dark-background.jpg -->
 
 ### Step 4
 
@@ -345,7 +344,7 @@ $$p_{i,j} ≝ \frac{p_{j\mid i} + p_{i\mid j}}{2n}$$
 <img src="tSNE_step4.png" alt="t-SNE" style="border:none" class="fragment fade-in" data-fragment-index="1"/>
 
 
-<!-- slide data-transition:"concave" data-transition-speed:"slow" -->
+<!-- slide data-transition="concave" data-transition-speed="slow" -->
 
 ## Dimensionality reduction to visualize high-dimensional representations
 
@@ -359,7 +358,7 @@ $$p_{i,j} ≝ \frac{p_{j\mid i} + p_{i\mid j}}{2n}$$
 > Since representations are high-dimensional ⟹ DR methods to visualize them
 
 
-<!-- slide data-transition:"concave" data-transition-speed:"slow" -->
+<!-- slide data-transition="concave" data-transition-speed="slow" -->
 
 ### meta-SNE to visualize the space of representations
 
@@ -371,7 +370,7 @@ $$p_{i,j} ≝ \frac{p_{j\mid i} + p_{i\mid j}}{2n}$$
 
 > Regarding neural networks: meta-SNE enables us no longer to confine ourselves to comparing their outcome only, but also how they operate internally.
 
-<!-- slide data-transition:"convex" data-transition-speed:"slow" data-background-image:dark-background.jpg vertical:true -->
+<!-- slide data-transition="convex" data-transition-speed="slow" data-background-image=dark-background.jpg vertical=true -->
 
 ### Sigmoid
 
@@ -381,13 +380,13 @@ $$p_{i,j} ≝ \frac{p_{j\mid i} + p_{i\mid j}}{2n}$$
 
 <img src="meta-SNE_2.png" alt="meta-SNE" style="maxheight: 500px; border:none" class="fragment fade-in" data-fragment-index="2"/>
 
-<!-- slide data-transition:"convex" data-transition-speed:"slow" data-background-image:dark-background.jpg vertical:true -->
+<!-- slide data-transition="convex" data-transition-speed="slow" data-background-image=dark-background.jpg vertical=true -->
 
 ### CNN
 
 <img src="meta-SNE_3.png" alt="meta-SNE" style="maxheight: 500px; border:none" class="fragment fade-in" data-fragment-index="3"/>
 
 
-<!-- slide  data-transition:"convex" data-transition-speed:"slow" -->
+<!-- slide  data-transition="convex" data-transition-speed="slow" -->
 
 # IV. Conclusion
