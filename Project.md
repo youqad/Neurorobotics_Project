@@ -98,7 +98,7 @@ Light luminance|Fixed
 
     - $4$ joints
 
-        - each of which has $4$ **proprioceptive** sensors (whose output depended on the position of the joint)
+        - each of which has $4$ **proprioceptive** sensors (whose outputs depend on the position of the joint)
     - $2$ eyes (for each of them: $3$ spatial and $3$ orientation coordinates)
 
         - on which there are $20$ omnidirectionally sensitive photosensors (**exteroceptive**)
