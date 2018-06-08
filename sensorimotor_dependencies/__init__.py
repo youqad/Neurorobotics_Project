@@ -1,4 +1,4 @@
-__version__ = '0.1.1'
+__version__ = '0.0.1'
 __name__ = 'sensorimotor_dependencies'
 __author__ = 'Kexin Ren and Younesse Kaddar'
 __credits__ = ['Kexin Ren', 'Younesse Kaddar', 'David Philipona', 
