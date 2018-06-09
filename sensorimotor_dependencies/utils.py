@@ -92,11 +92,11 @@ def MDS(data, return_matrix=False):
     Returns                                   
     -------                                                                               
     nb : int                                                                        
-        Number of non-zero eigenvalues of $$B = X X^T$$ (where \(X\) is the coordinate matrix), 
+        Number of non-zero eigenvalues of $$B = X X^T$$ (where \\(X\\) is the coordinate matrix), 
         thought of as the number of degrees of freedom.
         The eigenvalues thereof fall into two classes (non-zero and zero eigenvalues) \(V_1\) and \(V_2\),
         distinguished as follows: 
-        > each \(λ ∈ V_1\) has a size closer to other the $λ$'s of $V_1$ 
+        > each \(λ ∈ V_1\) has a size closer to other the \(λ\)'s of \(V_1\) 
         than the ones of \(V_2\), and conversely. 
         The boundary between \(V_1\) and \(V_2\) corresponds to the largest ratio \(λ_{i+1}/λ_i\),
         where the \(λ_i\) are in decreasing order.
