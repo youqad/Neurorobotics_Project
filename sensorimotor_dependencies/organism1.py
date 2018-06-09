@@ -202,7 +202,7 @@ class Organism1:
                                  self.E_0+self._neighborhood_lin_approx(self.E_size))[~self.mask_proprio]
         for _ in range(self.nb_generating_motor_commands*self.nb_generating_env_positions)])
         
-  def get_dimensions(self):
+  def get_dimensions(self, dim_red='PCA'):
     """
     Compute the number of parameters needed to describe the exteroceptive variations when:
     1. only the environment changes
@@ -214,22 +214,11 @@ class Organism1:
     self.compute_proprioception()
     self.compute_variations()
     
-    # Now PCA!
-    self.dim_env = PCA(self.env_variations)
-    self.dim_extero = PCA(self.mot_variations)
-    self.dim_env_extero = PCA(self.env_mot_variations)
+    # Now the number of degrees of freedom!
+    self.dim_env = dim_reduction_dict[dim_red](self.env_variations)
+    self.dim_extero = dim_reduction_dict[dim_red](self.mot_variations)
+    self.dim_env_extero = dim_reduction_dict[dim_red](self.env_mot_variations)
     self.dim_rigid_group = self.dim_env+self.dim_extero-self.dim_env_extero
-    
-    # MDS
-    new_env = mds(self.env_variations)
-    
-    print('new env data = ', new_env)  
-    plt.scatter(new_env[0], new_env[1])
-    plt.show
-
-    new_extero = mds(self.mot_variations)
-    new_env_extero = mds(self.env_mot_variations)
-
     
     self.dim_table = '''
     **Characteristics**|**Value**
