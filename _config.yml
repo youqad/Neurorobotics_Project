@@ -1,1 +1,73 @@
 theme: jekyll-theme-cayman
+
+name: Inferring Space from Sensorimotor Dependencies
+
+description: Neurobotics Cogmaster project at the Ecole Normale Supérieure / Univ. Paris Descartes
+
+# Your name, as you want it to appear underneath each post and in the footer
+authors:
+  youkad:
+    name: Younesse Kaddar
+    display_name: youkad
+    gravatar: 5db2d552a79bb30544c63f6fe4f5f20d
+    email: youqad@gmail.com
+    web: http://younesse.net
+    github: youqad
+  renkexin:
+    name: Kexin Ren
+    github: renkexinmay
+
+
+# The URL of your actual domain. This will be used to make absolute links in the RSS feed.
+url: http://younesse.net/
+
+#### Under the Hood Stuff #####
+
+# Use rdiscount as the markdown engine because it generates html5 compliant code for stuff like footnotes
+# If you use maroku (default engine) some of your generated pages may not validate or lint as html5
+# If you don't have it install it via gem install rdiscount
+markdown: kramdown
+highlighter: rouge
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
+
+
+# Markdown Processing
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
+  math_engine: mathjax
+  math_engine_opts : {preview: true}
+  parse_span_html: false
+  remove_block_html_tags: false
+
+# Makes pretty (descriptive) permalinks. See Jekyll docs for alternatives.
+permalink: pretty
+
+# How many articles do you wish to appear on the front page:
+paginate: 3
+
+# Exclude metadata and development time dependencies (like Grunt plugins)
+exclude:
+  - "*.sublime-project"
+  - "*.sublime-workspace"
+  - Capfile
+  - CHANGELOG
+  - config
+  - Gemfile
+  - Gruntfile.js
+  - gulpfile.js
+  - LICENSE
+  - log
+  - node_modules
+  - package.json
+  - Rakefile
+  - README
+  - /.vscode
