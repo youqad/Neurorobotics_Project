@@ -33,6 +33,7 @@ abstract: 'Final Project: Inferring Space from Sensorimotor Dependencies'
 
 - [Jupyter Notebook](http://bit.ly/2kJwH5w)
 - [Online Version](http://younesse.net/Neuro-robotique/Project.md)
+- [Documentation](https://neurorobotics-project.readthedocs.io)
 
 $$
 \newcommand{\T}{ {\raise{0.7ex}{\intercal}}}
