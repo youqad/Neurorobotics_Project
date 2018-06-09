@@ -93,7 +93,7 @@ html_theme = 'sphinx_materialdesign_theme'
 
 # Html logo in drawer.
 # Fit in the drawer at the width of image is 240 px.
-html_logo = '_static/logo_project.svg'
+html_logo = '_static/logo_project.png'
 
 
 # Theme options are theme-specific and customize the look and feel of a theme
@@ -126,7 +126,7 @@ html_theme_options = {
     #
     # Values: amber, blue, brown, cyan deep_orange, deep_purple, green, grey, indigo, light_blue,
     #         light_green, lime, orange, pink, purple, red, teal, yellow(Default: indigo)
-    'primary_color': 'teal',
+    'primary_color': 'cyan',
     # Values: Same as primary_color. (Default: pink)
     'accent_color': 'orange',
 
