@@ -219,7 +219,18 @@ class Organism1:
     self.dim_extero = PCA(self.mot_variations)
     self.dim_env_extero = PCA(self.env_mot_variations)
     self.dim_rigid_group = self.dim_env+self.dim_extero-self.dim_env_extero
+    
+    # MDS
+    new_env = mds(self.env_variations)
+    
+    print('new env data = ', new_env)  
+    plt.scatter(new_env[0], new_env[1])
+    plt.show
 
+    new_extero = mds(self.mot_variations)
+    new_env_extero = mds(self.env_mot_variations)
+
+    
     self.dim_table = '''
     **Characteristics**|**Value**
     -|-
