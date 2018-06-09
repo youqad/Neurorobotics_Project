@@ -232,3 +232,51 @@ then:
 - `body + env ≥ both` (by the Grassmann formula)
 - `body = 12` (because all we need is 12 parameters to describe the body: 6 (3D position & Euler angles) for each eye)
 - and `comp = 6`: the dimension of the Lie group of orthogonal transformations (3 translation and 3 rotations).
+
+## Implementation
+
+### OOP
+
+Object-Oriented Programming is programming paradigm ("way of of coding") relying on the notion of **objects** and **classes** (which are blueprints for object, so to say). A class (*ex*: a class `Person`) has 
+
+- **attributes** which are characteristics of the object. *Ex*: `name` and `age` can be an attributes of our `Person`:
+    ```python
+     class Person:
+         __init__(self, age, name):
+             self.age = age
+             self.name = name
+    ```
+
+    **NB**: the keyword `self` refers to the object itself.
+
+- and **methods**, which are actions they can take. In practice, these are functions inside the class. *Ex*: `walk()` or `say(something)` can be methods of our `Person`:
+
+    ```python
+     class Person:
+         __init__(self, age, name):
+             self.age = age
+             self.name = name
+        def walk(self):
+            # [...]
+        def say(self, something):
+            print(something + " !")
+    ```
+
+    **NB**: 
+    1. `__init__` is a special method that is executed when an object is created
+    2. all the methods have `self` as first argument
+
+
+Now, an object, is a particular **instantiation** of our class: in our example, it's would be a particular `Person`:
+
+```python
+# We create a `Person` aged 68 and called `"Grassmann"`
+Grassmann = Person(68, "Grassmann")
+
+# We make this person say something
+Grassmann.say("dim(E+F) = dim(E) + dim(F) - dim(E ∩ F)")
+```
+
+And what is convenient is that a class can inherit from another one (i.e. inherit from the attributes and methods of another one). *Ex:* a class `Mathematician` can inherit from the class `Person` (as a mathematician is particular instance of a person), and it would have its own new methods, such as `create_theorem()` that Person doesn't have.
+
+As it happens: in our case, each organism will be a class, and organisms 2 & 3 will inherit from organism 1.
