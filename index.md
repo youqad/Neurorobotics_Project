@@ -289,4 +289,7 @@ Grassmann.say("dim(E+F) = dim(E) + dim(F) - dim(E ∩ F)")
 
 And what is convenient is that a class can inherit from another one (i.e. inherit from the attributes and methods of another one). *Ex:* a class `Mathematician` can inherit from the class `Person` (as a mathematician is particular instance of a person), and it would have its own new methods, such as `create_theorem()` that Person doesn't have.
 
-As it happens: in our case, each organism will be a class, and organisms 2 & 3 will inherit from organism 1.
+What happens in our case:
+
+- each organism will be a class
+- and organisms 2 & 3 will inherit from organism 1
