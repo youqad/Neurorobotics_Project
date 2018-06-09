@@ -70,7 +70,7 @@ class Organism1:
       
     - `retina_size` size of the retina: variance of the normal distribution from
       which are drawn the C[i,k] (relative position of photosensor k within eye i)
-      
+    
   """
   def __init__(self, seed=1, retina_size=1., M_size=M_size, E_size=E_size,
                nb_joints=nb_joints, nb_eyes=nb_eyes, nb_lights=nb_lights, 
