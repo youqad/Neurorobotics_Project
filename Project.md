@@ -29,7 +29,7 @@ $$
 \newcommand{\T}{ {\raise{0.7ex}{\intercal}}}
 $$
 
-W
+
 ## The Algorithm
 
 1. Proprioceptive input is separated from exteroceptive input by noting that proprioceptive input remains silent when no motor commands are given, whereas exteroceptive input changes because of environmental change.
@@ -195,7 +195,7 @@ The whole point is to have the organism discover itself the environment and its 
 
 The results we're supposed to get are around:
 
-||Number of parameters necessary to describe|
+|Characteristics|Number of parameters necessary to describe|
 -|-|
 Exteroceptive body|12
 Environment|9
@@ -208,7 +208,7 @@ But we're not there! We've tried a whole bunch of things, higgledy-piggledy: cha
 
 For example, with 500 generated motor commands/env positions (vs. 50 in the paper), we get:
 
-||Number of parameters necessary to describe|
+|Characteristics|Number of parameters necessary to describe|
 -|-|
 Exteroceptive body|3
 Environment|5
