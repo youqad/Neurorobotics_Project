@@ -93,7 +93,7 @@ html_theme = 'sphinx_materialdesign_theme'
 
 # Html logo in drawer.
 # Fit in the drawer at the width of image is 240 px.
-html_logo = '_static/logo_project.png'
+html_logo = '_static/logo_project.svg'
 
 
 # Theme options are theme-specific and customize the look and feel of a theme
