@@ -1,1 +1,1 @@
-foundation_sphinx_theme
+sphinx_materialdesign_theme
