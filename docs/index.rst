@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Documentation: Inferring space from sensorimotor dependencies (D.Philipona, J.O’Regan, J.Nadal)
-###############################################################################################
+*Documentation*: Inferring Space from Sensorimotor Dependencies
+###############################################################
 
 Package ``sensorimotor_dependencies``
 *************************************
