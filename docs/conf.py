@@ -116,8 +116,8 @@ html_theme_options = {
     # https://material.io/icons/
     'header_links' : [
         ('Home', 'index', False, 'home'),
-        ("younesse.net", "http://younesse.net", True, 'launch'),
-        ("GitHub", "https://github.com/youqad/Neurorobotics_Project", True, 'link')
+        ("GitHub", "https://github.com/youqad/Neurorobotics_Project", True, 'link'),
+        ("younesse.net", "http://younesse.net", True, 'launch')
     ],
 
     # Customize css colors.
