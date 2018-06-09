@@ -1,5 +1,8 @@
 """
-# *Final Project:* Inferring Space from Sensorimotor Dependencies
+*Final Project:* Inferring Space from Sensorimotor Dependencies
+---------------------------------------------------------------
+
+
 
 """
 

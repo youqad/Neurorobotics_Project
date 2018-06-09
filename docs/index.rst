@@ -4,27 +4,20 @@
    contain the root `toctree` directive.
 
 Documentation: Inferring space from sensorimotor dependencies (D.Philipona, J.O’Regan, J.Nadal)
-***********************************************************************************************
+###############################################################################################
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
+Package ``sensorimotor_dependencies``
+*************************************
 
 .. automodule:: sensorimotor_dependencies
 
 
-Utilities -- Dimension Reduction
-================================
-
-.. automodule:: sensorimotor_dependencies.utils
-   :members:
-
-Organism #1
-===========
-
-.. automodule:: sensorimotor_dependencies.organism1
-   :members:
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+   
+   utils
+   organism1
 
 
 Indices and tables
