@@ -116,7 +116,7 @@ html_theme_options = {
     # https://material.io/icons/
     'header_links' : [
         ('Home', 'index', False, 'home'),
-        ("ExternalLink", "http://younesse.net", True, 'launch'),
+        ("younesse.net", "http://younesse.net", True, 'launch'),
         ("GitHub", "https://github.com/youqad/Neurorobotics_Project", True, 'link')
     ],
 
