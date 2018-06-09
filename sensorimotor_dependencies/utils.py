@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 
 from sklearn import preprocessing
 from scipy.spatial import distance
@@ -71,9 +70,9 @@ def PCA(data, return_matrix=False):
     if return_matrix:
         # Projection of the data points over the eigenvectors 
         Proj = data.dot(eig_vec[:,max_ratio+1:])
+        return len(eig_val[max_ratio+1:]), Proj
 
-    return len(eig_val[max_ratio+1:]) if not return_matrix else len(eig_val[max_ratio+1:]), Proj
-
+    return len(eig_val[max_ratio+1:])
 
 #------------------------------------------------------------
 # Classical multidimensional scaling (MDS)
@@ -128,8 +127,9 @@ def MDS(data, return_matrix=False):
         Λ_sqrt  = np.diag(np.sqrt(eig_val[max_ratio+1:]))
         E  = eig_vec[max_ratio+1:]
         X  = E.dot(Λ_sqrt)
+        return len(eig_val[max_ratio+1:]), X
     
-    return len(eig_val[max_ratio+1:]) if not return_matrix else len(eig_val[max_ratio+1:]), X
+    return len(eig_val[max_ratio+1:])
 
 #------------------------------------------------------------
 # Dictionary to access the dimension reduction functions in the classes later
