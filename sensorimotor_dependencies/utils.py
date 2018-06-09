@@ -36,13 +36,15 @@ def PCA(data, return_matrix=False):
     """                                                                                       
     Principal Component Analysis (PCA) to compute the number of degrees of freedom.
 
-    Input                                                                                
+    Parameters                                                                                
     ----------                                                                                
     data : (n, k) array                                                                          
-        Data points matrix (data points = row vectors in the matrix)                                                         
+        Data points matrix (data points = row vectors in the matrix)
+    return_matrix : bool
+        If True, returns the matrix of the data points projection on the eigenvectors                                                       
                                                                                                
-    Output                                   
-    ----------                                                                                   
+    Returns                                   
+    -------                                                                                
     nb : int                                                                        
         Number of non-zero eigenvalues of the covariance matrix,
         thought of as the number of degrees of freedom.
@@ -52,10 +54,8 @@ def PCA(data, return_matrix=False):
         than the ones of V2, and conversely. 
         The boundary between V_1 and V_2 corresponds to the largest ratio λ_{i+1}/λ_i,
         where the λ_i are in decreasing order.
-
-    if return_matrix == True:  
-        Proj : (n, dim_rigid_group) array                                                                          
-        Projection of the data points on the eigenvectors                                                     
+    Proj : (n, dim_rigid_group) array                                                                          
+        If return_matrix == True: Projection of the data points on the eigenvectors                                                     
     """
 
     # Covariance matrix
@@ -82,13 +82,15 @@ def MDS(data, return_matrix=False):
     Classical multidimensional scaling (MDS) to compute the number of degrees of freedom
     cf. https://en.wikipedia.org/wiki/Multidimensional_scaling#Classical_multidimensional_scaling
                                                                                                
-    Input                                                                                
+    Parameters                                                                                
     ----------                                                                                
     data : (n, k) array                                                                          
-        Data points matrix (data points = row vectors in the matrix)                                                         
+        Data points matrix (data points = row vectors in the matrix)
+    return_matrix : bool
+        If True, returns the coordinate matrix                                                      
                                                                                                
-    Output                                   
-    ----------                                                                                   
+    Returns                                   
+    -------                                                                               
     nb : int                                                                        
         Number of non-zero eigenvalues of B = X X^T (where X is the coordinate matrix), 
         thought of as the number of degrees of freedom.
@@ -98,10 +100,8 @@ def MDS(data, return_matrix=False):
         than the ones of V2, and conversely. 
         The boundary between V_1 and V_2 corresponds to the largest ratio λ_{i+1}/λ_i,
         where the λ_i are in decreasing order.
-
-    if return_matrix == True:  
-        X : (n, dim_rigid_group) array                                                                          
-        Coordinate matrix.                                                    
+    X : (n, dim_rigid_group) array                                                                          
+        If return_matrix == True: Coordinate matrix.                                                    
     """
     
     # Number of points                                                                        
