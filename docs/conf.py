@@ -117,7 +117,7 @@ html_theme_options = {
     'header_links' : [
         ('Home', 'index', False, 'home'),
         ("GitHub", "https://github.com/youqad/Neurorobotics_Project", True, 'link'),
-        ("younesse.net", "http://younesse.net", True, 'launch')
+        ("Overview", "http://younesse.net/Neurorobotics_Project/", True, 'launch')
     ],
 
     # Customize css colors.
