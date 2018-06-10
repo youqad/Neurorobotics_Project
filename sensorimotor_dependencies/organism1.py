@@ -193,16 +193,16 @@ class Organism1:
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     $$\\\\begin{align*}
-    (Q,P,a) &≝ σ(W_1 · σ(W_2 · M − μ_2)−μ_1)\\\
-    L &≝ σ(V_1 ·σ(V_2 · E − ν_2) − ν_1)\\\\\
-    ∀1≤ k ≤ p', 1≤i≤p, \\\quad S^e_{i,k} &≝ d_i \\\sum\\\limits_{j} \\\\frac{θ_j}{\\\Vert P_i + Rot(a_i^θ, a_i^φ, a_i^ψ) \\\cdot C_{i,k} - L_j \\\Vert^2}\\\\\\
-    (S^p_i)_{1≤ i ≤ q'q} &≝ σ(U_1 · σ(U_2 · Q − τ_2) − τ_1)\\\\\\\
+    (Q,P,a) &≝ σ(W_1 · σ(W_2 · M − μ_2)−μ_1)\\\\\\\\
+    L &≝ σ(V_1 ·σ(V_2 · E − ν_2) − ν_1)\\\\\\\\\
+    ∀1≤ k ≤ p', 1≤i≤p, \\\quad S^e_{i,k} &≝ d_i \\\sum\\\limits_{j} \\\\frac{θ_j}{\\\Vert P_i + Rot(a_i^θ, a_i^φ, a_i^ψ) \\\cdot C_{i,k} - L_j \\\Vert^2}\\\\\\\\\\
+    (S^p_i)_{1≤ i ≤ q'q} &≝ σ(U_1 · σ(U_2 · Q − τ_2) − τ_1)\\\\\\\\\\\
     \\\end{align*}$$
 
     where
 
-    -  \\\(W_1, W_2, V_1, V_2, U_1, U_2\\\) are matrices with coefficients drawn randomly from 
-    a uniform distribution between \\\(−1\\\) and \\\\(1\\\)
+    -  \\\(W_1, W_2, V_1, V_2, U_1, U_2\\\) are matrices with coefficients drawn randomly from a uniform distribution 
+    between \\\(−1\\\) and \\\\(1\\\)
     -  the vectors \\\(μ_1, μ_2, ν_1, ν_2, τ_1, τ_2\\\) too
     -  \\\(σ\\\) is an arbitrary nonlinearity (e.g. the hyperbolic tangent function)
     -  the \\\(C_{i,k}\\\) are drawn from a centered normal distribution 
