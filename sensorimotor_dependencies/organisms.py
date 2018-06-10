@@ -489,9 +489,9 @@ class Organism2(Organism1):
 
     Q, P, a, L = super()._get_QPaL(M, E)
 
-    self.d = 1./np.array([sum(self.theta[j]/np.linalg.norm(P[i]+Rot(a[i]).dot(self.C[i,k])-L[j])**2
+    self.d = 1./np.array([[sum(self.theta[j]/np.linalg.norm(P[i]+Rot(a[i]).dot(self.C[i,k])-L[j])**2
                               for j in range(self.nb_lights))
-                          for i in range(self.nb_eyes)
+                          for i in range(self.nb_eyes)]
                           for k in range(self.extero)]).sum(axis=1)
                           
     return super().get_sensory_inputs(M, E, QPaL=(Q, P, a, L))
