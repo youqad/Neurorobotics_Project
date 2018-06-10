@@ -16,6 +16,7 @@ Package ``sensorimotor_dependencies``
    :maxdepth: 2
    :caption: Contents:
 
+   index
    utils
    organism1
    organism2
