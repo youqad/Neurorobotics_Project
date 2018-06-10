@@ -452,7 +452,7 @@ class Organism1:
 
 class Organism2(Organism1):
   """
-  Organism 2:
+  Organism 2 (inherits from ``Organism1``):
 
     This time, to spice things up: we introduce nonspatial body changes thanks to pupil reflex, and nonspatial changes in the environment via varying light intensities. 
     
@@ -556,7 +556,7 @@ class Organism2(Organism1):
 
 class Organism3(Organism2):
   """
-  Organism 3:
+  Organism 3 (inherits from ``Organism2``):
 
   Same as the previous one, except that the diaphragms are controlled by the organism (and not reflex-based anymore).
 
