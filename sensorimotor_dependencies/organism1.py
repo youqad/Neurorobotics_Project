@@ -53,8 +53,7 @@ class Organism1:
 
     3. the environment consists of:
 
-        - ``nb_lights`` lights 
-          (3 spatial coordinates and ``nb_lights`` luminance values for each of them)
+        - ``nb_lights`` lights (3 spatial coordinates and ``nb_lights`` luminance values for each of them)
         
     Other parameters:
     
@@ -161,9 +160,9 @@ class Organism1:
     +-----------------------------------+-----------------------------------+
     | Notation                          | Meaning                           |
     +===================================+===================================+
-    | $$Q ≝ (Q_1, \\\ldots, Q_{3q})$$     | positions of the joints           |
+    | $$Q ≝ (Q_1, \\\ldots, Q_{3q})$$   | positions of the joints           |
     +-----------------------------------+-----------------------------------+
-    | $$P ≝ (P_1, \\\ldots, P_{3p})$$     | positions of the eyes             |
+    | $$P ≝ (P_1, \\\ldots, P_{3p})$$   | positions of the eyes             |
     +-----------------------------------+-----------------------------------+
     | $$a^θ_i, a^φ_i, a^ψ_i$$           | Euler angles for the orientation  |
     |                                   | of eye \\\(i\\\)                  |
@@ -174,11 +173,11 @@ class Organism1:
     | $$C_{i,k}$$                       | relative position of photosensor  |
     |                                   | \\\(k\\\) within eye \\\(i\\\)    |
     +-----------------------------------+-----------------------------------+
-    | $$d ≝ (d_1, \\\ldots,d_p)$$         | apertures of diaphragms           |
+    | $$d ≝ (d_1, \\\ldots,d_p)$$       | apertures of diaphragms           |
     +-----------------------------------+-----------------------------------+
-    | $$L ≝ (L_1,\\\ldots,L_{3r})$$       | positions of the lights           |
+    | $$L ≝ (L_1,\\\ldots,L_{3r})$$     | positions of the lights           |
     +-----------------------------------+-----------------------------------+
-    | $$θ ≝ (θ_1, \\\ldots, θ_r)$$        | luminances of the lights          |
+    | $$θ ≝ (θ_1, \\\ldots, θ_r)$$      | luminances of the lights          |
     +-----------------------------------+-----------------------------------+
     | $$S^e_{i,k}$$                     | sensory input from exteroceptive  |
     |                                   | sensor \\\(k\\\) of eye \\\(i\\\) |
@@ -202,31 +201,29 @@ class Organism1:
 
     where
 
-    -  \\\(W_1, W_2, V_1, V_2, U_1, U_2\\\) are matrices with coefficients
-      drawn randomly from a uniform distribution between \\\(−1\\\) and
-      \\\\(1\\\)
+    -  \\\(W_1, W_2, V_1, V_2, U_1, U_2\\\) are matrices with coefficients 
+    drawn randomly from a uniform distribution between \\\(−1\\\) and \\\\(1\\\)
     -  the vectors \\\(μ_1, μ_2, ν_1, ν_2, τ_1, τ_2\\\) too
-    -  \\\(σ\\\) is an arbitrary nonlinearity (e.g. the hyperbolic tangent
-      function)
-    -  the \\\(C_{i,k}\\\) are drawn from a centered normal distribution
-      whose variance (which can be understood as the size of the retina) is
-      so that the sensory changes resulting from a rotation of the eye are
-      of the same order of magnitude as the ones resulting from a
-      translation of the eye
+    -  \\\(σ\\\) is an arbitrary nonlinearity (e.g. the hyperbolic tangent function)
+    -  the \\\(C_{i,k}\\\) are drawn from a centered normal distribution 
+    whose variance (which can be understood as the size of the retina) is
+    so that the sensory changes resulting from a rotation of the eye are
+    of the same order of magnitude as the ones resulting from a
+    translation of the eye
     -  \\\(θ\\\) and \\\(d\\\) are constants drawn at random in the interval
-      \\\([0.5, 1]\\\)
+    \\\([0.5, 1]\\\)
 
 
-    Parameters                                                                                
-    ----------                                                                                
-    M : (M_size,) array                                                                          
+    Parameters
+    ----------
+    M : (M_size,) array
       Motor command vector
-    E : (E_size,) array                                                                          
-      Environmental control vector                                                    
+    E : (E_size,) array
+      Environmental control vector
                                                                                                 
-    Returns                                   
-    -------                                                                                
-    np.concatenate((Sp, Se)) : (``proprio*nb_joints + extero*nb_eyes``,) array  
+    Returns
+    -------
+    np.concatenate((Sp, Se)) : (``proprio*nb_joints + extero*nb_eyes``,) array
     """
     Q, P, a = [arr.reshape([-1, 3]) 
                 for arr in np.split(
@@ -272,13 +269,13 @@ class Organism1:
     """
     Neighborhood linear approximation:
 
-    Parameters                                                                                
-    ----------                                                                                
-    size : int                                                                      
-      Neighborhood size of the linear approximation                                                    
-                                                                                                
-    Returns                                   
-    -------                                                                                
+    Parameters
+    ----------
+    size : int
+      Neighborhood size of the linear approximation
+
+    Returns
+    -------
     rand_vect : (size,) array
       Random vector drawn from a normal distribution 
       with mean zero and standard deviation ``neighborhood_size`` 
@@ -322,13 +319,13 @@ class Organism1:
         
   def get_dimensions(self, dim_red='PCA'):
     """
-    Parameters                                                                                
-    ----------                                                                                
-    dim_red : {'PCA', 'MDA'}, optional                                                                      
+    Parameters
+    ----------
+    dim_red : {'PCA', 'MDA'}, optional
       Dimension reduction algorithm used to compute the number of degrees of freedom.
 
-    Returns                                   
-    -------                                                                                
+    Returns
+    -------
     self.dim_rigid_group, self.dim_extero, self.dim_env, self.dim_env_extero : tuple(int, int, int, int)
       Estimated dimension of the rigid group of compensated movements (stored in ``self.dim_rigid_group``),
       and number of parameters needed to describe the exteroceptive variations when:
