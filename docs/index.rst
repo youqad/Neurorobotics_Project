@@ -15,9 +15,9 @@ Package ``sensorimotor_dependencies``
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-   
+
    utils
-   organism1
+   organisms
 
 
 Indices and tables

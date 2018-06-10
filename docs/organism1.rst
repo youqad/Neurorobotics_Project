@@ -1,5 +1,5 @@
 Organism #1
 ===========
 
-.. automodule:: sensorimotor_dependencies.organism1
+.. autoclass:: sensorimotor_dependencies.organisms.Organism1
    :members:
