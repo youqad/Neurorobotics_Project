@@ -83,7 +83,7 @@ presentation:
   viewDistance: 3
 
   # Parallax background image
-  parallaxBackgroundImage: 'http://younesse.net/assets/Slides/Visualization/swirl-background.jpg'
+  parallaxBackgroundImage: 'https://github.com/youqad/Neurorobotics_Project/blob/master/Inferring-space-from-sensorimotor-dependencies/brain_background.jpg?raw=true'
 
   # Parallax background size
   # parallaxBackgroundSize: "5100px 2800px"
@@ -143,9 +143,9 @@ $$
 
 ##### Kexin Ren & Younesse Kaddar
 
-##### *Studied article:* [](http://www.rctn.org/bruno/3DFM/Philipona-NC03.pdf)
+##### *Based on* D. Philipona, J. O’Regan, and J. Nadal's 2003 article
 
-[Final Summary](http://younesse.net/Neuro-robotique/Summary/) / [Associated Jupyter Notebook](/ipynb/neurorobotics/Inferring_Space_from_Sensorimotor_Dependencies.ipynb.html)
+[Documentation](https://neurorobotics-project.readthedocs.io) / [Associated Jupyter Notebook](/ipynb/neurorobotics/Inferring_Space_from_Sensorimotor_Dependencies.ipynb.html)
 
 
 </div>
@@ -154,17 +154,19 @@ ____
 
 <div style="text-align:left">
 
-### Introduction:
+### Introduction: you said "space"?
 
 ____
 
-### I.
+### I. Proprioception vs. Exteroception
 
-### II.
+### II. Compensated Movements
 
-### III.
+### III. Mathematical formulation
 
-### IV.
+### IV. Algorithm
+
+### V. Simulations and Beyond
 
 </div>
 
