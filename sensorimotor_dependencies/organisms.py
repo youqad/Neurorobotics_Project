@@ -180,10 +180,10 @@ class Organism1:
   def _get_QPaL(self, M, E):
     Q, P, a = [arr.reshape([-1, 3])
             for arr in np.split(
-                self.σ(self.W_1.dot(self.σ(self.W_2.dot(M)-self.μ_2))-self.μ_1),
+                self.sigma(self.W_1.dot(self.sigma(self.W_2.dot(M)-self.μ_2))-self.μ_1),
                 [3*self.nb_joints, 3*self.nb_joints+3*self.nb_eyes])]
 
-    L = self.σ(self.V_1.dot(self.σ(self.V_2.dot(E)-self.ν_2))-self.ν_1).reshape([-1, 3])
+    L = self.sigma(self.V_1.dot(self.sigma(self.V_2.dot(E)-self.ν_2))-self.ν_1).reshape([-1, 3])
 
     return Q, P, a, L
 
@@ -265,7 +265,7 @@ class Organism1:
       Concatenation of proprioceptive and exteroceptive sensory inputs
     """
     Q, P, a, L = self._get_QPaL(M, E) if QPaL is None else QPaL
-    Sp = self.σ(self.U_1.dot(self.σ(self.U_2.dot(Q.flatten())-self.τ_2))-self.τ_1)
+    Sp = self.sigma(self.U_1.dot(self.sigma(self.U_2.dot(Q.flatten())-self.τ_2))-self.τ_1)
     Se = np.array([self.d[i]*
                     sum(self.θ[j]/np.linalg.norm(P[i]+Rot(a[i]).dot(self.C[i,k])-L[j])**2
                         for j in range(self.nb_lights))
@@ -618,6 +618,6 @@ class Organism3(Organism2):
 
     Q, P, a, L = super()._get_QPaL(M, E)
 
-    self.d = self.σ(self.W_1d.dot(self.σ(self.W_2d.dot(M)-self.μ_2d))-self.μ_1d)
+    self.d = self.sigma(self.W_1d.dot(self.sigma(self.W_2d.dot(M)-self.μ_2d))-self.μ_1d)
                           
     return super().get_sensory_inputs(M, E, QPaL=(Q, P, a, L))
