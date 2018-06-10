@@ -17,7 +17,8 @@ Package ``sensorimotor_dependencies``
    :caption: Contents:
 
    utils
-   organisms
+   organism1
+   organism2
 
 
 Indices and tables
