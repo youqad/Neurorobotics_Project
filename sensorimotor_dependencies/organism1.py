@@ -161,9 +161,9 @@ class Organism1:
     +-----------------------------------+-----------------------------------+
     | Notation                          | Meaning                           |
     +===================================+===================================+
-    | $$Q ≝ (Q_1, \ldots, Q_{3q})$$     | positions of the joints           |
+    | $$Q ≝ (Q_1, \\\ldots, Q_{3q})$$     | positions of the joints           |
     +-----------------------------------+-----------------------------------+
-    | $$P ≝ (P_1, \ldots, P_{3p})$$     | positions of the eyes             |
+    | $$P ≝ (P_1, \\\ldots, P_{3p})$$     | positions of the eyes             |
     +-----------------------------------+-----------------------------------+
     | $$a^θ_i, a^φ_i, a^ψ_i$$           | Euler angles for the orientation  |
     |                                   | of eye \\\(i\\\)                  |
@@ -174,11 +174,11 @@ class Organism1:
     | $$C_{i,k}$$                       | relative position of photosensor  |
     |                                   | \\\(k\\\) within eye \\\(i\\\)    |
     +-----------------------------------+-----------------------------------+
-    | $$d ≝ (d_1, \ldots,d_p)$$         | apertures of diaphragms           |
+    | $$d ≝ (d_1, \\\ldots,d_p)$$         | apertures of diaphragms           |
     +-----------------------------------+-----------------------------------+
-    | $$L ≝ (L_1,\ldots,L_{3r})$$       | positions of the lights           |
+    | $$L ≝ (L_1,\\\ldots,L_{3r})$$       | positions of the lights           |
     +-----------------------------------+-----------------------------------+
-    | $$θ ≝ (θ_1, \ldots, θ_r)$$        | luminances of the lights          |
+    | $$θ ≝ (θ_1, \\\ldots, θ_r)$$        | luminances of the lights          |
     +-----------------------------------+-----------------------------------+
     | $$S^e_{i,k}$$                     | sensory input from exteroceptive  |
     |                                   | sensor \\\(k\\\) of eye \\\(i\\\) |
@@ -193,14 +193,12 @@ class Organism1:
     Computing the sensory inputs
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    $$
-    \begin{align*}
-    (Q,P,a) &≝ σ(W_1 · σ(W_2 · M − μ_2)−μ_1)\\
-    L &≝ σ(V_1 ·σ(V_2 · E − ν_2) − ν_1)\\
-    ∀1≤ k ≤ p', 1≤i≤p, \quad S^e_{i,k} &≝ d_i \sum\limits_{ j } \frac{θ_j}{\Vert P_i + Rot(a_i^θ, a_i^φ, a_i^ψ) \cdot C_{i,k} - L_j \Vert^2}\\
+    $$\\\begin{align*}
+    (Q,P,a) &≝ σ(W_1 · σ(W_2 · M − μ_2)−μ_1)\\\\\\
+    L &≝ σ(V_1 ·σ(V_2 · E − ν_2) − ν_1)\\\\\\
+    ∀1≤ k ≤ p', 1≤i≤p, \\\quad S^e_{i,k} &≝ d_i \\\sum\\\limits_{ j } \\\frac{θ_j}{\\\Vert P_i + Rot(a_i^θ, a_i^φ, a_i^ψ) \\\cdot C_{i,k} - L_j \\\Vert^2}\\\\\\
     (S^p_i)_{1≤ i ≤ q'q} &≝ σ(U_1 · σ(U_2 · Q − τ_2) − τ_1)
-    \end{align*}
-    $$
+    \\\end{align*}$$
 
     where
 
@@ -277,7 +275,7 @@ class Organism1:
     Parameters                                                                                
     ----------                                                                                
     size : int                                                                      
-        Neighborhood size of the linear approximation                                                    
+      Neighborhood size of the linear approximation                                                    
                                                                                                 
     Returns                                   
     -------                                                                                
@@ -327,7 +325,7 @@ class Organism1:
     Parameters                                                                                
     ----------                                                                                
     dim_red : {'PCA', 'MDA'}, optional                                                                      
-        Dimension reduction algorithm used to compute the number of degrees of freedom.
+      Dimension reduction algorithm used to compute the number of degrees of freedom.
 
     Returns                                   
     -------                                                                                
