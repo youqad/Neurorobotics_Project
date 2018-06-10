@@ -125,6 +125,8 @@ Light luminance|Fixed
 
 In the second experiment, we considered a more complex device with an arm having 10 joints, bearing 4 eyes. Each eye had a diaphragm or at- tenuator with an automatic “pupil reflex” that reduced light input to it in such a way that total illumination for the eye was constant. There were five light sources in the environment, and we now allowed their intensity to vary. The dimensionality of the motor command and sensory in- put was also increased, respectively, to 100 (determining the 24 degrees of freedom of the four eyes, each having three positional and three orien- tational degrees of freedom) and 120 (determined by the 20 photosensors on each of the four eyes plus 40 proprioceptors). Again the purpose was to show that the complexity of the sensorimotor coupling was not a the- oretical obstacle to our approach; neither were nonspatial body changes like the pupil reflex or nonspatial changes in the environment, like light intensity.
 
+
+
 **Parameter**|**Value**
 -|-
 Dimension of motor commands|$40$
@@ -281,7 +283,7 @@ then:
 
 ### OOP
 
-Object-Oriented Programming is programming paradigm ("way of of coding") relying on the notion of **objects** and **classes** (which are blueprints for object, so to say). A class (*ex*: a class `Person`) has 
+Object-Oriented Programming is a programming paradigm ("way of of coding") relying on the notion of **objects** and **classes** (which are blueprints for object, so to say). A class (*ex*: a class `Person`) has 
 
 - **attributes** which are characteristics of the object. *Ex*: `name` and `age` can be an attributes of our `Person`:
     ```python
@@ -323,7 +325,7 @@ Grassmann.say("dim(E+F) = dim(E) + dim(F) - dim(E ∩ F)")
 
 And what is convenient is that a class can inherit from another one (i.e. inherit from the attributes and methods of another one). *Ex:* a class `Mathematician` can inherit from the class `Person` (as a mathematician is particular instance of a person), and it would have its own new methods, such as `create_theorem()` that Person doesn't have.
 
-What happens in our case:
+In our case:
 
 - each organism will be a class
 - and organisms 2 & 3 will inherit from organism 1
