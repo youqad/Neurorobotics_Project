@@ -620,4 +620,4 @@ class Organism3(Organism2):
 
     self.d = self.sigma(self.W_1d.dot(self.sigma(self.W_2d.dot(M)-self.μ_2d))-self.μ_1d)
                           
-    return super().super().get_sensory_inputs(M, E, QPaL=(Q, P, a, L))
+    return Organism1.get_sensory_inputs(self, M, E, QPaL=(Q, P, a, L))
