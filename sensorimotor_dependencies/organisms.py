@@ -274,7 +274,7 @@ class Organism1:
     return np.concatenate((Sp, Se))
 
 
-  def compute_proprioception(self):
+  def get_proprioception(self):
     """
     Computes a mask indicating the sensory inputs the organism can reliably
     deem to be proprioceptive, since they remain silent when:
@@ -285,7 +285,7 @@ class Organism1:
 
     Example
     -------
-    >>> O = organisms.Organism1(proprio=1, nb_joints=2, extero=1, nb_eyes=2); O.compute_proprioception(); O.mask_proprio
+    >>> O = organisms.Organism1(proprio=1, nb_joints=2, extero=1, nb_eyes=2); O.get_proprioception(); O.mask_proprio
     array([ True,  True, False, False], dtype=bool)
     """
     self.random.set_state(self.random_state)
@@ -326,7 +326,7 @@ class Organism1:
     return rand_vect
 
 
-  def compute_variations(self):
+  def get_variations(self):
     """
     Compute the variations in the exteroceptive inputs when:
       1. only the environment changes
@@ -353,6 +353,16 @@ class Organism1:
 
   def get_dimensions(self, dim_red='PCA'):
     """
+    Compute and returns the estimated dimension of the rigid group of compensated movements
+    and the estimated number of parameters needed to describe the 
+    variations in the exteroceptive inputs when: only the body 
+    (resp. the environment, resp. both of them) change.
+
+    The results
+    
+    - are stored in a markdown table string: ``self.dim_table``
+    - are added to the representation string (accessed via ``__str__``) of the object
+
     Parameters
     ----------
     dim_red : {'PCA', 'MDA'}, optional
@@ -369,9 +379,39 @@ class Organism1:
           - this number is stored in ``self.dim_env``
         3. both the body and the environment change
           - this number is stored in ``self.dim_env_extero``
+
+    Examples
+    --------
+    >>>  O = organisms.Organism1(); O.get_dimensions()
+    (4, 10, 5, 11)
+
+    >>> print(O.dim_table)
+    **Characteristics**|**Value**
+    -|-
+    Dimension for body (p)|10
+    Dimension for environment (e)|5
+    Dimension for both (b)|11
+    Dimension of group of compensated movements|4
+
+    >>> print(str(O))
+    **Characteristics**|**Value**
+    -|-
+    Dimension of motor commands|40
+    Dimension of environmental control vector|40
+    Dimension of proprioceptive inputs|16
+    Dimension of exteroceptive inputs|40
+    Number of eyes|2
+    Number of joints|4
+    Diaphragms|None
+    Number of lights|3
+    Light luminance|Fixed
+    Dimension for body (p)|10
+    Dimension for environment (e)|5
+    Dimension for both (b)|11
+    Dimension of group of compensated movements|4
     """
-    self.compute_proprioception()
-    self.compute_variations()
+    self.get_proprioception()
+    self.get_variations()
 
     # Now the number of degrees of freedom!
     self.dim_env = dim_reduction_dict[dim_red](self.env_variations)
