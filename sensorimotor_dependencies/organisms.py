@@ -581,8 +581,8 @@ class Organism3(Organism2):
     # Random initializations for the diaphragm-related parameters
     # (they can be thought of as the last lines of the corresponding matrices)
 
-    self.W_1d, self.μ_1d = 2*self.random.rand(1, dim_μ1)-1, 2*self.random.rand(dim_μ1)-1
-    self.W_2d, self.μ_2d = 2*self.random.rand(1, M_size)-1, 2*self.random.rand(dim_μ1)-1
+    self.W_1d, self.μ_1d = 2*self.random.rand(1, self.dim_μ1)-1, 2*self.random.rand(self.dim_μ1)-1
+    self.W_2d, self.μ_2d = 2*self.random.rand(1, M_size)-1, 2*self.random.rand(self.dim_μ1)-1
 
     self.random_state = self.random.get_state()
                    
