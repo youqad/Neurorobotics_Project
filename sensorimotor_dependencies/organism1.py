@@ -220,13 +220,13 @@ class Organism1:
     Parameters                                                                                
     ----------                                                                                
     M : (M_size,) array                                                                          
-        Motor command vector
+      Motor command vector
     E : (E_size,) array                                                                          
-        Environmental control vector                                                    
+      Environmental control vector                                                    
                                                                                                 
     Returns                                   
     -------                                                                                
-    np.concatenate((Sp, Se)) : (proprio*nb_joints + extero*nb_eyes,) array  
+    np.concatenate((Sp, Se)) : (``proprio*nb_joints + extero*nb_eyes``,) array  
     """
     Q, P, a = [arr.reshape([-1, 3]) 
                 for arr in np.split(
