@@ -505,7 +505,7 @@ class Organism2(Organism1):
                nb_generating_env_positions=nb_generating_env_positions,
                neighborhood_size=neighborhood_size, sigma=σ):
     # Subclass: Initializing out of Organism 1
-    super().__init__(self, seed=seed, retina_size=retina_size, M_size=M_size, E_size=E_size,
+    super().__init__(seed=seed, retina_size=retina_size, M_size=M_size, E_size=E_size,
                      nb_joints=nb_joints, nb_eyes=nb_eyes, nb_lights=nb_lights,
                      extero=extero, proprio=proprio,
                      nb_generating_motor_commands=nb_generating_motor_commands,
@@ -569,7 +569,7 @@ class Organism3(Organism2):
                nb_generating_env_positions=nb_generating_env_positions,
                neighborhood_size=neighborhood_size, sigma=σ):
     # Subclass: Initializing out of Organism 1
-    super().__init__(self, seed=seed, retina_size=retina_size, M_size=M_size, E_size=E_size,
+    super().__init__(seed=seed, retina_size=retina_size, M_size=M_size, E_size=E_size,
                      nb_joints=nb_joints, nb_eyes=nb_eyes, nb_lights=nb_lights,
                      extero=extero, proprio=proprio,
                      nb_generating_motor_commands=nb_generating_motor_commands,
