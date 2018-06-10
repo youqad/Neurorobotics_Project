@@ -58,8 +58,7 @@ exteroceptive) body** all the body parts dedicated to proprioception
 
 .. figure:: https://cdn.bulbagarden.net/upload/thumb/4/40/090Shellder.png/250px-090Shellder.png
    :alt: Shellder
-
-   Shellder
+   :align: middle
 
 and let’s say, for the sake of simplicity, that it is an organism
 comprised of one mouth/shell and some eyes. As it happens,
