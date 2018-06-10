@@ -70,6 +70,30 @@ class Organism1:
       
     - `retina_size` size of the retina: variance of the normal distribution from
       which are drawn the C[i,k] (relative position of photosensor k within eye i)
+
+  +-----------------------------------+-----------------------------------+
+  | **Parameter**                     | **Value**                         |
+  +===================================+===================================+
+  | Dimension of motor commands       | ``nb_generating_motor_commands``  |
+  +-----------------------------------+-----------------------------------+
+  | Dimension of environmental        | ``nb_generating_env_positions``   |
+  | control vector                    |                                   |
+  +-----------------------------------+-----------------------------------+
+  | Dimension of proprioceptive       | ``proprio*nb_joints``             |
+  | inputs                            |                                   |
+  +-----------------------------------+-----------------------------------+
+  | Dimension of exteroceptive inputs | ``extero*nb_eyes``                |
+  +-----------------------------------+-----------------------------------+
+  | Number of eyes                    | ``nb_eyes``                       |
+  +-----------------------------------+-----------------------------------+
+  | Number of joints                  | ``nb_joints``                     |
+  +-----------------------------------+-----------------------------------+
+  | Diaphragms                        | None                              |
+  +-----------------------------------+-----------------------------------+
+  | Number of lights                  | ``nb_lights``                     |
+  +-----------------------------------+-----------------------------------+
+  | Light luminance                   | Fixed                             |
+  +-----------------------------------+-----------------------------------+
     
   """
   def __init__(self, seed=1, retina_size=1., M_size=M_size, E_size=E_size,

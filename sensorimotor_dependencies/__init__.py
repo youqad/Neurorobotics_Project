@@ -1,5 +1,5 @@
 """
-Implementation of the D.Philipona, J.O’Regan and J.Nadal's 2003 article
+Implementation of D.Philipona, J.O’Regan and J.Nadal's 2003 article
 -----------------------------------------------------------------------
 
 
