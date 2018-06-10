@@ -222,7 +222,8 @@ class Organism1:
                                                                                                 
     Returns
     -------
-    S : (proprio*nb_joints + extero*nb_eyes,) array
+    (proprio*nb_joints + extero*nb_eyes,) array
+      Concatenation of proprioceptive and exteroceptive sensory inputs
     """
     Q, P, a = [arr.reshape([-1, 3]) 
                 for arr in np.split(
@@ -236,8 +237,7 @@ class Organism1:
                         for j in range(self.nb_lights))
                     for i in range(self.nb_eyes)
                     for k in range(self.extero)])
-    S = np.concatenate((Sp, Se))
-    return S
+    return np.concatenate((Sp, Se))
 
   
   def compute_proprioception(self):
