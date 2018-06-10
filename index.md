@@ -96,10 +96,10 @@ where
 -|-
 Dimension of motor commands|$40$
 Dimension of environmental control vector|$40$
-Dimension of proprioceptive inputs|$16 \quad (= 4×4)$
-Dimension of exteroceptive inputs|$40 \quad (= 2 × 20)$
 Number of eyes|$2$
 Number of joints|$4$
+Dimension of proprioceptive inputs|$16 \quad (= 4×4)$
+Dimension of exteroceptive inputs|$40 \quad (= 2 × 20)$
 Diaphragms|None
 Number of lights|$3$
 Light luminance|Fixed
@@ -123,35 +123,36 @@ Light luminance|Fixed
 
 ## Organism 2
 
-In the second experiment, we considered a more complex device with an arm having 10 joints, bearing 4 eyes. Each eye had a diaphragm or at- tenuator with an automatic “pupil reflex” that reduced light input to it in such a way that total illumination for the eye was constant. There were five light sources in the environment, and we now allowed their intensity to vary. The dimensionality of the motor command and sensory in- put was also increased, respectively, to 100 (determining the 24 degrees of freedom of the four eyes, each having three positional and three orien- tational degrees of freedom) and 120 (determined by the 20 photosensors on each of the four eyes plus 40 proprioceptors). Again the purpose was to show that the complexity of the sensorimotor coupling was not a the- oretical obstacle to our approach; neither were nonspatial body changes like the pupil reflex or nonspatial changes in the environment, like light intensity.
-
-
-
-**Parameter**|**Value**
--|-
-Dimension of motor commands|$40$
-Dimension of environmental control vector|$40$
-Dimension of proprioceptive inputs|$16 \quad (= 4×4)$
-Dimension of exteroceptive inputs|$40 \quad (= 2 × 20)$
-Number of eyes|$2$
-Number of joints|$4$
-Diaphragms|None
-Number of lights|$3$
-Light luminance|Fixed
+This time, to spice things up: we introduce nonspatial body changes thanks to pupil reflex, and nonspatial changes in the environment via varying light intensities. Note that it should add a dimension to the group of compensated movements: on top what we had earlier, we now have eye closing and opening compensating luminance variations.
 
 1. The arm has
 
-    - $4$ joints
+    - $10$ joints
+    - $4$ eyes, each of which as a *diaphragm* $d_i$ reducing the light input so that the total illumination for the eye remains constant. That is, for eye $i$:
 
-        - each of which has $4$ **proprioceptive** sensors (whose outputs depend on the position of the joint)
-    - $2$ eyes (for each of them: $3$ spatial and $3$ orientation coordinates)
+        $$\sum\limits_{ k } S_{i, k}^e = 1$$
 
-        - on which there are $20$ omnidirectionally sensitive photosensors (**exteroceptive**)
-2. the motor command is $40$-dimensional  
+        i.e.:
+
+        $$d_i ≝ \sum\limits_{ k } \left(\sum\limits_{ j}\frac{θ_j}{\Vert P_i + Rot(a_i^θ, a_i^φ, a_i^ψ) \cdot C_{i,k}-L_j\Vert^2}\right)^{-1}$$
+    2. the motor command is $100$-dimensional  
 
 3. the environment consists of:
 
-    - $3$ lights ($3$ spatial coordinates and $3$ luminance values for each of them)
+    - $5$ lights, of varying intensities
+
+**Parameter**|**Value**
+-|-
+Dimension of motor commands|$100$
+Dimension of environmental control vector|$40$
+Number of eyes|$4$
+Number of joints|$10$
+Dimension of proprioceptive inputs|$40 \quad (= 10×4)$
+Dimension of exteroceptive inputs|$80 \quad (= 4 × 20)$
+Diaphragms|Reflex
+Number of lights|$5$
+Light luminance|Variable
+
 
 
 > **NB**: Changes made: typos indices, number of proprioceptive inputs, $S_i^p$ computed with $Q$
@@ -214,21 +215,21 @@ But in simulation 1, the organism is not able to issue such motor commands as "c
 
 ## What do we mean by *proprioceptive body*?
 
-It's sort of a misuse of language (to be more concise), but what is actually meant by "proprioceptive body" as far as I know is "the body, accessed through all its prioprioceptive sensory inputs and only them". 
+It's sort of a misuse of language (to be more concise), but what is actually meant by "proprioceptive body" as far as I know is "the body, accessed through all its prioprioceptive sensory inputs and only them".
 
-*Ex:* let's consider the pokémon Shellder for example: 
+*Ex:* let's consider the pokémon Shellder for example:
 
 ![Shellder](https://cdn.bulbagarden.net/upload/thumb/4/40/090Shellder.png/250px-090Shellder.png)
 
 and let's say, for the sake of simplicity, that it's an organism comprised of one mouth/shell and some eyes. As before, the proprioception is the location of its tongue in its shell, and the exteroception is the visual inputs from its eyes. So the proprioceptive body in this case would be the information about the body the brain gets from the proprioception only, *i.e.:* only its tongue's location in its mouth (not the visual cues its gets from the environment via its eyes).
 
-In other words: the **proprioceptive (resp. exteroceptive) body** is "all the body parts dedicated to proprioception (resp. exteroception)", so to say. 
+In other words: the **proprioceptive (resp. exteroceptive) body** is "all the body parts dedicated to proprioception (resp. exteroception)", so to say.
 
-*Ex:* in our case (organism 1): 
+*Ex:* in our case (organism 1):
 - the joints are equipped with proprioceptive sensors
 - the eyes with exteroceptive ("retina-like") sensors
 
-So describing the exteroceptive body is specifying a set of parameters sufficient to describe the states of the exteroceptive sensors. When the sensors are in two different states, they won't have the same value for the same environment (ex: an eye in two different positions won't see the same thing, even if the environment doesn't change: so the position of the eyes is part of their state). 
+So describing the exteroceptive body is specifying a set of parameters sufficient to describe the states of the exteroceptive sensors. When the sensors are in two different states, they won't have the same value for the same environment (ex: an eye in two different positions won't see the same thing, even if the environment doesn't change: so the position of the eyes is part of their state).
 Here, the states of the exteroceptive sensors (= sensors on the eyes) can be described by the position of the eyes (3 parameters for each eye), and their Euler angles (3 parameters for each eye).
 
 ## What's wrong with our results?
@@ -263,7 +264,7 @@ Group of compensated movements|-3
 
 ⇒ the number of parameters for body+environment is pretty close to what it should be (15), so that's fine at this point. But there is a huge difference between the number of parameters we're supposed to have for the body only (12 instead of 3), and the environment (9 vs. 5, even if it's better for the environment).
 
-A very important parameter we had completely overlooked at first is the variance of the $C_{ik}$, which can be thought of as the size of the retina! In the article, no explicit value is provided for this variance, but this is the most important remark in the article: 
+A very important parameter we had completely overlooked at first is the variance of the $C_{ik}$, which can be thought of as the size of the retina! In the article, no explicit value is provided for this variance, but this is the most important remark in the article:
 
 > The $C_{i,k}$ are drawn from a centered normal distribution whose variance, which can be understood as the size of the retina, was so that the sensory changes resulting from a rotation of the eye were of the same order of magnitude as the ones resulting from a translation of the eye.
 
@@ -272,7 +273,7 @@ Unfortunately we can't find any "reasonable" retina size value for `seed=1` and 
 - `comp` the dimension of the rigid group of compensated movements
 - `body` (resp. `env`, resp. `both`) the number of paramters necessary to describe the body (resp. the environment, resp. both of them)
 
-then: 
+then:
 
 - `both > body` and `both > env` (changing both the body and the environment should yield a higher dimension than just the body and just the environment!)
 - `body + env ≥ both` (by the Grassmann formula)
@@ -283,7 +284,7 @@ then:
 
 ### OOP
 
-Object-Oriented Programming is a programming paradigm ("way of of coding") relying on the notion of **objects** and **classes** (which are blueprints for object, so to say). A class (*ex*: a class `Person`) has 
+Object-Oriented Programming is a programming paradigm ("way of of coding") relying on the notion of **objects** and **classes** (which are blueprints for object, so to say). A class (*ex*: a class `Person`) has
 
 - **attributes** which are characteristics of the object. *Ex*: `name` and `age` can be an attributes of our `Person`:
     ```python
@@ -308,7 +309,7 @@ Object-Oriented Programming is a programming paradigm ("way of of coding") relyi
             print(something + " !")
     ```
 
-    **NB**: 
+    **NB**:
     1. `__init__` is a special method that is executed when an object is created
     2. all the methods have `self` as first argument
 

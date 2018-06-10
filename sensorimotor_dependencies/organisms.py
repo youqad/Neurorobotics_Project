@@ -1,25 +1,48 @@
 from .utils import *
 
 #------------------------------------------------------------
-# Parameters
+# Default Parameters for Organism1
+
 
 M_size = 40
+"""
+Dimension of motor commands: default value for Organism 1
+"""
+
 E_size = 40
+"""
+Dimension of environmental control vector: default value for Organisms 1, 2 and 3
+"""
 
 # Number of Joints / q
 nb_joints = 4
+"""
+Number of joints: default value for Organism 1
+"""
 
 # Number of eyes / p
 nb_eyes = 2
+"""
+Number of eyes: default value for Organism 1
+"""
 
 # Number of lights / r
 nb_lights = 3
+"""
+Number of lights in the environment: default value for Organism 1
+"""
 
 # Number of exteroceptive photosensors / p'
 extero = 20
+"""
+Number of exteroceptive photosensors in each eye: default value for Organisms 1, 2 and 3
+"""
 
 # Number of proprioceptive sensors / q'
 proprio = 4
+"""
+Number of proprioceptive sensors on the organism's joints: default value for Organisms 1, 2 and 3
+"""
 
 
 # Sensory inputs were generated from...
@@ -37,6 +60,8 @@ sigma = np.tanh
 class Organism1:
   """
   Organism 1:
+
+    By default:
 
     1. The arm has
 
@@ -78,14 +103,14 @@ class Organism1:
     | Dimension of environmental        | ``E_size``                        |
     | control vector                    |                                   |
     +-----------------------------------+-----------------------------------+
+    | Number of eyes                    | ``nb_eyes``                       |
+    +-----------------------------------+-----------------------------------+
+    | Number of joints                  | ``nb_joints``                     |
+    +-----------------------------------+-----------------------------------+
     | Dimension of proprioceptive       | ``proprio*nb_joints``             |
     | inputs                            |                                   |
     +-----------------------------------+-----------------------------------+
     | Dimension of exteroceptive inputs | ``extero*nb_eyes``                |
-    +-----------------------------------+-----------------------------------+
-    | Number of eyes                    | ``nb_eyes``                       |
-    +-----------------------------------+-----------------------------------+
-    | Number of joints                  | ``nb_joints``                     |
     +-----------------------------------+-----------------------------------+
     | Diaphragms                        | None                              |
     +-----------------------------------+-----------------------------------+
@@ -152,8 +177,17 @@ class Organism1:
 
     self.random_state = self.random.get_state()
 
+  def _get_QPaL(self, M, E):
+    Q, P, a = [arr.reshape([-1, 3])
+            for arr in np.split(
+                self.sigma(self.W_1.dot(self.sigma(self.W_2.dot(M)-self.mu_2))-self.mu_1),
+                [3*self.nb_joints, 3*self.nb_joints+3*self.nb_eyes])]
 
-  def get_sensory_inputs(self, M, E):
+    L = self.sigma(self.V_1.dot(self.sigma(self.V_2.dot(E)-self.nu_2))-self.nu_1).reshape([-1, 3])
+
+    return Q, P, a, L
+
+  def get_sensory_inputs(self, M, E, QPaL=None):
     """
     Compute sensory inputs for motor command ``M`` and environment position ``E``
 
@@ -219,18 +253,18 @@ class Organism1:
       Motor command vector
     E : (E_size,) array
       Environmental control vector
+    QPaL : {4-tuple of arrays, None}, optional
+      \\\(Q, P, a\\\) and \\\(L\\\) values. 
+      If left unspecified, then they are computed as above, with the `_get_QPaL` method.
+      > This optional argument come in handy for Organisms 2 and 3,
+      > for which we use this very method (avoiding heavy overloading)
 
     Returns
     -------
     (proprio*nb_joints + extero*nb_eyes,) array
       Concatenation of proprioceptive and exteroceptive sensory inputs
     """
-    Q, P, a = [arr.reshape([-1, 3])
-                for arr in np.split(
-                    self.sigma(self.W_1.dot(self.sigma(self.W_2.dot(M)-self.mu_2))-self.mu_1),
-                    [3*self.nb_joints, 3*self.nb_joints+3*self.nb_eyes])]
-
-    L = self.sigma(self.V_1.dot(self.sigma(self.V_2.dot(E)-self.nu_2))-self.nu_1).reshape([-1, 3])
+    Q, P, a, L = self._get_QPaL(M, E) if QPaL is None else QPaL
     Sp = self.sigma(self.U_1.dot(self.sigma(self.U_2.dot(Q.flatten())-self.tau_2))-self.tau_1)
     Se = np.array([self.d[i]*
                     sum(self.theta[j]/np.linalg.norm(P[i]+Rot(a[i]).dot(self.C[i,k])-L[j])**2
@@ -363,3 +397,101 @@ class Organism1:
 
   def __str__(self):
     return self.self_table
+
+class Organism2(Organism1):
+  """
+  Organism 2:
+
+    This time, to spice things up: we introduce nonspatial body changes thanks to pupil reflex, and nonspatial changes in the environment via varying light intensities. 
+    > Note that it should add a dimension to the group of compensated movements: on top what we had earlier, we now have eye closing and opening compensating luminance variations.
+
+    The default values that have changed compared to Organism 1 are the following ones:
+
+    1. The arm has
+      - \\\(10\\\) joints
+      - \\\(4\\\) eyes, each of which as a *diaphragm* \\\(d_i\\\) reducing the light input so that the total illumination of the eye remains constant (equal to 1). That is, for eye \\\(i\\\):
+
+          $$\\\sum\\\limits_{ k } S_{i, k}^e = 1$$
+
+          i.e.:
+
+          $$d_i ≝ \\\sum\\\limits_{ k } \\\left(\\\sum\\\limits_{ j}\\\\frac{θ_j}{\\\Vert P_i + Rot(a_i^θ, a_i^φ, a_i^ψ) \\\cdot C_{i,k}-L_j\\\Vert^2}\\\\right)^{-1}$$
+    2. the motor command is \\\(100\\\)-dimensional  
+
+    3. the environment consists of:
+
+      - \\\(5\\\) lights, of varying intensities
+
+    +-----------------------------------+-----------------------------------+
+    | **Parameter**                     | **Value**                         |
+    +===================================+===================================+
+    | Dimension of motor commands       | ``M_size``                        |
+    +-----------------------------------+-----------------------------------+
+    | Dimension of environmental        | ``E_size``                        |
+    | control vector                    |                                   |
+    +-----------------------------------+-----------------------------------+
+    | Number of eyes                    | ``nb_eyes``                       |
+    +-----------------------------------+-----------------------------------+
+    | Number of joints                  | ``nb_joints``                     |
+    +-----------------------------------+-----------------------------------+
+    | Dimension of proprioceptive       | ``proprio*nb_joints``             |
+    | inputs                            |                                   |
+    +-----------------------------------+-----------------------------------+
+    | Dimension of exteroceptive inputs | ``extero*nb_eyes``                |
+    +-----------------------------------+-----------------------------------+
+    | Diaphragms                        | **Reflex**                        |
+    +-----------------------------------+-----------------------------------+
+    | Number of lights                  | ``nb_lights``                     |
+    +-----------------------------------+-----------------------------------+
+    | Light luminance                   | **Variable**                      |
+    +-----------------------------------+-----------------------------------+
+
+  """
+  def __init__(self, seed=1, retina_size=1., M_size=M_size, E_size=E_size,
+               nb_joints=10, nb_eyes=4, nb_lights=5,
+               extero=extero, proprio=proprio,
+               nb_generating_motor_commands=100,
+               nb_generating_env_positions=nb_generating_env_positions,
+               neighborhood_size=neighborhood_size, sigma=sigma):
+    # Subclass: Initializing out of Organism 1
+    super().__init__(nb_joints=10, nb_eyes=4, nb_lights=5, nb_generating_motor_commands=100)
+  
+  def get_sensory_inputs(self, M, E, d=None):
+    """
+    Compute sensory inputs for motor command ``M`` and environment position ``E``.
+
+    Compared to Organism 1
+    ~~~~~~~~~~~~~~~~~~~~~~
+    
+    The diaphragms \\\(d_i\\\) now satisfy:
+
+    $$\\\sum\\\limits_{ k } S_{i, k}^e = 1$$
+
+    that is:
+
+    $$d_i ≝ \\\sum\\\limits_{ k } \\\left(\\\sum\\\limits_{ j}\\\\frac{θ_j}{\\\Vert P_i + Rot(a_i^θ, a_i^φ, a_i^ψ) \\\cdot C_{i,k}-L_j\\\Vert^2}\\\\right)^{-1}$$
+
+    to keep the total illumination of the eye remains constant equal to \\\(1\\\) (same as notations as Organism 1).
+
+
+    Parameters
+    ----------
+    M : (M_size,) array
+      Motor command vector
+    E : (E_size,) array
+      Environmental control vector
+
+    Returns
+    -------
+    (proprio*nb_joints + extero*nb_eyes,) array
+      Concatenation of proprioceptive and exteroceptive sensory inputs
+    """
+
+    Q, P, a, L = super()._get_QPaL(M, E)
+
+    self.d = 1./np.array([sum(self.theta[j]/np.linalg.norm(P[i]+Rot(a[i]).dot(self.C[i,k])-L[j])**2
+                              for j in range(self.nb_lights))
+                          for i in range(self.nb_eyes)
+                          for k in range(self.extero)]).sum(axis=1)
+                          
+    return super().get_sensory_inputs(M, E, QPaL=(Q, P, a, L))
