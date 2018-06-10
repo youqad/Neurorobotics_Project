@@ -121,6 +121,40 @@ Light luminance|Fixed
 
 > **NB**: Changes made: typos indices, number of proprioceptive inputs, $S_i^p$ computed with $Q$
 
+## Organism 2
+
+In the second experiment, we considered a more complex device with an arm having 10 joints, bearing 4 eyes. Each eye had a diaphragm or at- tenuator with an automatic “pupil reflex” that reduced light input to it in such a way that total illumination for the eye was constant. There were five light sources in the environment, and we now allowed their intensity to vary. The dimensionality of the motor command and sensory in- put was also increased, respectively, to 100 (determining the 24 degrees of freedom of the four eyes, each having three positional and three orien- tational degrees of freedom) and 120 (determined by the 20 photosensors on each of the four eyes plus 40 proprioceptors). Again the purpose was to show that the complexity of the sensorimotor coupling was not a the- oretical obstacle to our approach; neither were nonspatial body changes like the pupil reflex or nonspatial changes in the environment, like light intensity.
+
+**Parameter**|**Value**
+-|-
+Dimension of motor commands|$40$
+Dimension of environmental control vector|$40$
+Dimension of proprioceptive inputs|$16 \quad (= 4×4)$
+Dimension of exteroceptive inputs|$40 \quad (= 2 × 20)$
+Number of eyes|$2$
+Number of joints|$4$
+Diaphragms|None
+Number of lights|$3$
+Light luminance|Fixed
+
+1. The arm has
+
+    - $4$ joints
+
+        - each of which has $4$ **proprioceptive** sensors (whose outputs depend on the position of the joint)
+    - $2$ eyes (for each of them: $3$ spatial and $3$ orientation coordinates)
+
+        - on which there are $20$ omnidirectionally sensitive photosensors (**exteroceptive**)
+2. the motor command is $40$-dimensional  
+
+3. the environment consists of:
+
+    - $3$ lights ($3$ spatial coordinates and $3$ luminance values for each of them)
+
+
+> **NB**: Changes made: typos indices, number of proprioceptive inputs, $S_i^p$ computed with $Q$
+
+
 _____________
 
 

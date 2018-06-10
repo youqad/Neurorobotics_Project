@@ -71,29 +71,29 @@ class Organism1:
     - `retina_size` size of the retina: variance of the normal distribution from
       which are drawn the C[i,k] (relative position of photosensor k within eye i)
 
-  +-----------------------------------+-----------------------------------+
-  | **Parameter**                     | **Value**                         |
-  +===================================+===================================+
-  | Dimension of motor commands       | ``nb_generating_motor_commands``  |
-  +-----------------------------------+-----------------------------------+
-  | Dimension of environmental        | ``nb_generating_env_positions``   |
-  | control vector                    |                                   |
-  +-----------------------------------+-----------------------------------+
-  | Dimension of proprioceptive       | ``proprio*nb_joints``             |
-  | inputs                            |                                   |
-  +-----------------------------------+-----------------------------------+
-  | Dimension of exteroceptive inputs | ``extero*nb_eyes``                |
-  +-----------------------------------+-----------------------------------+
-  | Number of eyes                    | ``nb_eyes``                       |
-  +-----------------------------------+-----------------------------------+
-  | Number of joints                  | ``nb_joints``                     |
-  +-----------------------------------+-----------------------------------+
-  | Diaphragms                        | None                              |
-  +-----------------------------------+-----------------------------------+
-  | Number of lights                  | ``nb_lights``                     |
-  +-----------------------------------+-----------------------------------+
-  | Light luminance                   | Fixed                             |
-  +-----------------------------------+-----------------------------------+
+    +-----------------------------------+-----------------------------------+
+    | **Parameter**                     | **Value**                         |
+    +===================================+===================================+
+    | Dimension of motor commands       | ``M_size``  |
+    +-----------------------------------+-----------------------------------+
+    | Dimension of environmental        | ``E_size``   |
+    | control vector                    |                                   |
+    +-----------------------------------+-----------------------------------+
+    | Dimension of proprioceptive       | ``proprio*nb_joints``             |
+    | inputs                            |                                   |
+    +-----------------------------------+-----------------------------------+
+    | Dimension of exteroceptive inputs | ``extero*nb_eyes``                |
+    +-----------------------------------+-----------------------------------+
+    | Number of eyes                    | ``nb_eyes``                       |
+    +-----------------------------------+-----------------------------------+
+    | Number of joints                  | ``nb_joints``                     |
+    +-----------------------------------+-----------------------------------+
+    | Diaphragms                        | None                              |
+    +-----------------------------------+-----------------------------------+
+    | Number of lights                  | ``nb_lights``                     |
+    +-----------------------------------+-----------------------------------+
+    | Light luminance                   | Fixed                             |
+    +-----------------------------------+-----------------------------------+
     
   """
   def __init__(self, seed=1, retina_size=1., M_size=M_size, E_size=E_size,
@@ -156,7 +156,82 @@ class Organism1:
   
   def get_sensory_inputs(self, M, E):
     """
-    Compute sensory inputs for motor command M and environment position E
+    Compute sensory inputs for motor command ``M`` and environment position ``E``
+
+    +-----------------------------------+-----------------------------------+
+    | Notation                          | Meaning                           |
+    +===================================+===================================+
+    | .. math:: Q ≝ (Q_1, \ldots, Q_{3q | positions of the joints           |
+    | })                                |                                   |
+    +-----------------------------------+-----------------------------------+
+    | .. math:: P ≝ (P_1, \ldots, P_{3p | positions of the eyes             |
+    | })                                |                                   |
+    +-----------------------------------+-----------------------------------+
+    | .. math:: a^θ_i, a^φ_i, a^ψ_i     | Euler angles for the orientation  |
+    |                                   | of eye i                          |
+    +-----------------------------------+-----------------------------------+
+    | .. math:: Rot(a^θ_i, a^φ_i, a^ψ_i | rotation matrix for eye i         |
+    | )                                 |                                   |
+    +-----------------------------------+-----------------------------------+
+    | .. math:: C_{i,k}                 | relative position of photosensor  |
+    |                                   | :math:`k` within eye :math:`i`    |
+    +-----------------------------------+-----------------------------------+
+    | .. math:: d ≝ (d_1, \ldots,d_p)   | apertures of diaphragms           |
+    +-----------------------------------+-----------------------------------+
+    | .. math:: L ≝ (L_1,\ldots,L_{3r}) | positions of the lights           |
+    +-----------------------------------+-----------------------------------+
+    | .. math:: θ ≝ (θ_1, \ldots, θ_r)  | luminances of the lights          |
+    +-----------------------------------+-----------------------------------+
+    | .. math:: S^e_{i,k}               | sensory input from exteroceptive  |
+    |                                   | sensor :math:`k` of eye :math:`i` |
+    +-----------------------------------+-----------------------------------+
+    | .. math:: S^p_i                   | sensory input from proprioceptive |
+    |                                   | sensor :math:`i`                  |
+    +-----------------------------------+-----------------------------------+
+    | .. math:: M, E                    | motor command and environmental   |
+    |                                   | control vector                    |
+    +-----------------------------------+-----------------------------------+
+
+    Computing the sensory inputs
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    .. math::
+
+
+      \begin{align*}
+      (Q,P,a) &≝ σ(W_1 · σ(W_2 · M − μ_2)−μ_1)\\
+      L &≝ σ(V_1 ·σ(V_2 · E − ν_2) − ν_1)\\
+      ∀1≤ k ≤ p', 1≤i≤p, \quad S^e_{i,k} &≝ d_i \sum\limits_{ j } \frac{θ_j}{\Vert P_i + Rot(a_i^θ, a_i^φ, a_i^ψ) \cdot C_{i,k} - L_j \Vert^2}\\
+      (S^p_i)_{1≤ i ≤ q'q} &≝ σ(U_1 · σ(U_2 · Q − τ_2) − τ_1)
+      \end{align*}
+
+    where
+
+    -  :math:`W_1, W_2, V_1, V_2, U_1, U_2` are matrices with coefficients
+      drawn randomly from a uniform distribution between :math:`−1` and
+      :math:`1`
+    -  the vectors :math:`μ_1, μ_2, ν_1, ν_2, τ_1, τ_2` too
+    -  :math:`σ` is an arbitrary nonlinearity (e.g. the hyperbolic tangent
+      function)
+    -  the :math:`C_{i,k}` are drawn from a centered normal distribution
+      whose variance (which can be understood as the size of the retina) is
+      so that the sensory changes resulting from a rotation of the eye are
+      of the same order of magnitude as the ones resulting from a
+      translation of the eye
+    -  :math:`θ` and :math:`d` are constants drawn at random in the interval
+      :math:`[0.5, 1]`
+
+
+    Parameters                                                                                
+    ----------                                                                                
+    M : (M_size,) array                                                                          
+        Motor command vector
+    E : (E_size,) array                                                                          
+        Environmental control vector                                                    
+                                                                                               
+    Returns                                   
+    -------                                                                                
+    np.concatenate((Sp, Se)) : (proprio*nb_joints + extero*nb_eyes,) array  
     """
     Q, P, a = [arr.reshape([-1, 3]) 
                for arr in np.split(
