@@ -192,10 +192,10 @@ class Organism1:
     Computing the sensory inputs
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    $$\\\begin{align*}
+    $$\\\\begin{align*}
     (Q,P,a) &≝ σ(W_1 · σ(W_2 · M − μ_2)−μ_1)\\\\\\
     L &≝ σ(V_1 ·σ(V_2 · E − ν_2) − ν_1)\\\\\\
-    ∀1≤ k ≤ p', 1≤i≤p, \\\quad S^e_{i,k} &≝ d_i \\\sum\\\limits_{ j } \\\frac{θ_j}{\\\Vert P_i + Rot(a_i^θ, a_i^φ, a_i^ψ) \\\cdot C_{i,k} - L_j \\\Vert^2}\\\\\\
+    ∀1≤ k ≤ p', 1≤i≤p, \\\quad S^e_{i,k} &≝ d_i \\\sum\\\limits_{j} \\\\frac{θ_j}{\\\Vert P_i + Rot(a_i^θ, a_i^φ, a_i^ψ) \\\cdot C_{i,k} - L_j \\\Vert^2}\\\\\\
     (S^p_i)_{1≤ i ≤ q'q} &≝ σ(U_1 · σ(U_2 · Q − τ_2) − τ_1)
     \\\end{align*}$$
 
@@ -223,7 +223,7 @@ class Organism1:
                                                                                                 
     Returns
     -------
-    np.concatenate((Sp, Se)) : (``proprio*nb_joints + extero*nb_eyes``,) array
+    S : (proprio*nb_joints + extero*nb_eyes,) array
     """
     Q, P, a = [arr.reshape([-1, 3]) 
                 for arr in np.split(
@@ -237,7 +237,8 @@ class Organism1:
                         for j in range(self.nb_lights))
                     for i in range(self.nb_eyes)
                     for k in range(self.extero)])
-    return np.concatenate((Sp, Se))
+    S = np.concatenate((Sp, Se))
+    return S
 
   
   def compute_proprioception(self):
@@ -265,7 +266,7 @@ class Organism1:
     
     self.random_state = self.random.get_state()
       
-  def _neighborhood_lin_approx(self, size):
+  def neighborhood_lin_approx(self, size):
     """
     Neighborhood linear approximation:
 
@@ -304,17 +305,17 @@ class Organism1:
     """
     self.env_variations = np.array([
         self.get_sensory_inputs(self.M_0,
-                                 self.E_0+self._neighborhood_lin_approx(self.E_size))[~self.mask_proprio]
+                                 self.E_0+self.neighborhood_lin_approx(self.E_size))[~self.mask_proprio]
         for _ in range(self.nb_generating_env_positions)])
 
     self.mot_variations = np.array([
-        self.get_sensory_inputs(self.M_0+self._neighborhood_lin_approx(self.M_size),
+        self.get_sensory_inputs(self.M_0+self.neighborhood_lin_approx(self.M_size),
                                  self.E_0)[~self.mask_proprio]
         for _ in range(self.nb_generating_motor_commands)])
 
     self.env_mot_variations = np.array([
-        self.get_sensory_inputs(self.M_0+self._neighborhood_lin_approx(self.M_size),
-                                 self.E_0+self._neighborhood_lin_approx(self.E_size))[~self.mask_proprio]
+        self.get_sensory_inputs(self.M_0+self.neighborhood_lin_approx(self.M_size),
+                                 self.E_0+self.neighborhood_lin_approx(self.E_size))[~self.mask_proprio]
         for _ in range(self.nb_generating_motor_commands*self.nb_generating_env_positions)])
         
   def get_dimensions(self, dim_red='PCA'):
