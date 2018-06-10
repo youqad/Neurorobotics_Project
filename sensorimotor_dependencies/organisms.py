@@ -614,6 +614,11 @@ class Organism3(Organism2):
     -------
     (proprio*nb_joints + extero*nb_eyes,) array
       Concatenation of proprioceptive and exteroceptive sensory inputs
+
+    Example
+    -------
+    >>> organisms.Organism3().get_dimensions()
+    (10, 9, 5, 4)
     """
 
     Q, P, a, L = super()._get_QPaL(M, E)
