@@ -358,7 +358,19 @@ class Organism1:
     variations in the exteroceptive inputs when: only the body 
     (resp. the environment, resp. both of them) change.
 
-    The results
+    The procedure is the following one:
+
+      1. One gets rid of proprioceptive inputs by noting that these don't change when no motor command is issued and the environment changes, contrary to exteroceptive inputs.
+
+      2. We estimate the dimension of the space of sensory inputs obtained through variations of the **motor commands only** with resort to a dimension reduction technique (``utils.PCA`` or ``utils.MDS``).
+
+      3. We do the same for sensory inputs obtained through variations of the **environment only**.
+
+      4. We reiterate for variations of **both the *motor commands and the environment** alike.
+
+      5. Finally, we compute the  dimension of the rigid space of compensated movements: it is the sum of the formers minus the latter.
+
+    At the end, the results
     
     - are stored in a markdown table string: ``self.dim_table``
     - are added to the representation string (accessed via ``__str__``) of the object
@@ -366,7 +378,7 @@ class Organism1:
     Parameters
     ----------
     dim_red : {'PCA', 'MDA'}, optional
-      Dimension reduction algorithm used to compute the number of degrees of freedom.
+      Dimension reduction algorithm used to compute the number of degrees of freedom (``PCA`` by default).
 
     Returns
     -------

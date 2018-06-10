@@ -156,6 +156,21 @@ where
 -  \\\(e\\\) is the dimension of the space of sensory inputs obtained
    through variations of the motor commands and the environment alike.
 
+Algorithm
+---------
+
+So the overall algorithm is as follows:
+
+1. One gets rid of proprioceptive inputs by noting that these don't change when no motor command is issued and the environment changes, contrary to exteroceptive inputs.
+
+2. We estimate the dimension of the space of sensory inputs obtained through variations of the **motor commands only** with resort to a dimension reduction technique (``utils.PCA`` or ``utils.MDS``).
+
+3. We do the same for sensory inputs obtained through variations of the **environment only**.
+
+4. We reiterate for variations of **both the *motor commands and the environment** alike.
+
+5. Finally, we compute the  dimension of the rigid space of compensated movements: it is the sum of the formers minus the latter.
+
 """
 
 __version__ = '0.0.1'

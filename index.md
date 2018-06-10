@@ -42,13 +42,15 @@ $$
 
 ## The Algorithm
 
-1. Proprioceptive input is separated from exteroceptive input by noting that proprioceptive input remains silent when no motor commands are given, whereas exteroceptive input changes because of environmental change.
+1. One gets rid of proprioceptive inputs by noting that these don't change when no motor command is issued and the environment changes, contrary to exteroceptive inputs.
 
-2. Estimation of the number of parameters needed to describe the variation in the exteroceptive inputs when only the environment changes. The algorithm issues no motor commands and calculates the covariance matrix of the observed environment-induced variations in sensory inputs. The dimension estimation is done by considering the eigenvalues of this covariance matrix. The eigenvalues $λ_i$ should fall into two classes: a class with values all equal to zero and a class with nonzero values. The two classes are separated by a clustering method (e.g. PCA). The number of nonzero eigenvalues is taken as the number of dimensions.
+2. We estimate the dimension of the space of sensory inputs obtained through variations of the **motor commands only** with resort to a dimension reduction technique (`utils.PCA` or `utils.MDS`).
 
-3. Estimation of the number of parameters needed to describe the variation in the exteroceptive inputs when only the body moved. The environment is kept fixed, and the algorithm gives random motor commands. The covariance matrix of the resulting changes is observed and the dimension is estimated from the number of nonzero eigenvalues in the same way as before.
+3. We do the same for sensory inputs obtained through variations of the **environment only**.
 
-4. Estimation of the number of parameters needed to describe the changes in exteroceptive inputs when both the body and the environment change. The environment is changed at random, and the organism gives random motor commands. The number of nonzero eigenvalues of the covariance matrix is obtained as before.
+4. We reiterate for variations of **both the *motor commands and the environment** alike.
+
+5. Finally, we compute the  dimension of the rigid space of compensated movements: it is the sum of the formers minus the latter.
 
 ## Simulation
 
