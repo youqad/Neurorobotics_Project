@@ -56,7 +56,7 @@ exteroceptive) body** all the body parts dedicated to proprioception
 
 *Example:* consider the pokémon Shellder for example:
 
-.. figure:: https://cdn.bulbagarden.net/upload/thumb/4/40/090Shellder.png/250px-090Shellder.png
+.. image:: https://cdn.bulbagarden.net/upload/thumb/4/40/090Shellder.png/250px-090Shellder.png
    :alt: Shellder
    :align: middle
 
