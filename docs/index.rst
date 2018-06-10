@@ -19,6 +19,7 @@ Package ``sensorimotor_dependencies``
    utils
    organism1
    organism2
+   organism3
 
 
 Indices and tables
