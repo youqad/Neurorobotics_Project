@@ -201,7 +201,8 @@ class Organism1:
 
     where
 
-    -  \\\(W_1, W_2, V_1, V_2, U_1, U_2\\\) are matrices with coefficients drawn randomly from a uniform distribution between \\\(−1\\\) and \\\\(1\\\)
+    -  \\\(W_1, W_2, V_1, V_2, U_1, U_2\\\) are matrices with coefficients drawn randomly from 
+    a uniform distribution between \\\(−1\\\) and \\\\(1\\\)
     -  the vectors \\\(μ_1, μ_2, ν_1, ν_2, τ_1, τ_2\\\) too
     -  \\\(σ\\\) is an arbitrary nonlinearity (e.g. the hyperbolic tangent function)
     -  the \\\(C_{i,k}\\\) are drawn from a centered normal distribution 
