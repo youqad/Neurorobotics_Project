@@ -83,7 +83,7 @@ presentation:
   viewDistance: 3
 
   # Parallax background image
-  parallaxBackgroundImage: 'https://github.com/youqad/Neurorobotics_Project/blob/master/Inferring-space-from-sensorimotor-dependencies/brain_background.jpg?raw=true'
+  parallaxBackgroundImage: 'http://younesse.net/images/Neurorobotics/brain_background.png'
 
   # Parallax background size
   # parallaxBackgroundSize: "5100px 2800px"
@@ -173,20 +173,21 @@ ____
 
 <!-- slide data-transition="convex" data-transition-speed="slow" -->
 
-### I. Introduction
+### I. Introduction: you said "space"?
 
 #### Dimensionality Reduction
 
-<span class="fragment fade-down highlight-red" data-fragment-index="1">high-dimensional data</span><span class="fragment fade-down highlight-green" data-fragment-index="2">$\qquad \rightsquigarrow \qquad \underbrace{\textit{lower-dimensional data}}_{\text{easier to visualize}}$</span>
+
+<span class="fragment fade-down highlight-red" data-fragment-index="1">high-dimensional sensory input vector</span><span class="fragment fade-down highlight-green" data-fragment-index="2">$\qquad \overset{\text{Brain}}{\rightsquigarrow} \qquad \underbrace{\textit{space, attributes, ...}}_{\text{easier to visualize}}$</span>
 
 > **Manifold hypothesis**: real-world high-dimensional data vectors lie in a lower-dimensional embedded manifold.
 
-<img src="manifold.png" alt="Manifold hypothesis" style="maxheight: 900px; border:none" class="fragment fade-in" data-fragment-index="3"/>
+<img src="intro_drawing.png" alt="Problem statement" style="maxheight: 900px; border:none" class="fragment fade-in" data-fragment-index="3"/>
 
 
 <!-- slide data-transition="zoom" data-transition-speed="slow" -->
 
-## I.A -  Multidimensional Scaling (MDS)
+## II. - Proprioception & Exteroception
 
 > **Goal**: Preserve distances between points ⟹ conserve geometry
 
