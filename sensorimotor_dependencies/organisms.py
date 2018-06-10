@@ -55,7 +55,7 @@ nb_generating_env_positions = 50
 neighborhood_size = 1e-8
 # (Coordinates differing from 0 by more than the std deviation are set equal to 0)
 
-sigma = np.tanh
+σ = np.tanh
 
 class Organism1:
   """
@@ -125,26 +125,26 @@ class Organism1:
                extero=extero, proprio=proprio,
                nb_generating_motor_commands=nb_generating_motor_commands,
                nb_generating_env_positions=nb_generating_env_positions,
-               neighborhood_size=neighborhood_size, sigma=sigma):
+               neighborhood_size=neighborhood_size, sigma=σ):
 
     self.random = np.random.RandomState(seed)
 
     #------------------------------------------------------------
     # Random initializations
 
-    dim_mu1 = 3*nb_joints+3*nb_eyes+3*nb_eyes
-    W_1, mu_1 = 2*self.random.rand(dim_mu1, dim_mu1)-1, 2*self.random.rand(dim_mu1)-1
-    W_2, mu_2 = 2*self.random.rand(dim_mu1, M_size)-1, 2*self.random.rand(dim_mu1)-1
+    dim_μ1 = 3*nb_joints+3*nb_eyes+3*nb_eyes
+    W_1, μ_1 = 2*self.random.rand(dim_μ1, dim_μ1)-1, 2*self.random.rand(dim_μ1)-1
+    W_2, μ_2 = 2*self.random.rand(dim_μ1, M_size)-1, 2*self.random.rand(dim_μ1)-1
 
-    dim_nu1 = 3*nb_lights
-    V_1, nu_1 = 2*self.random.rand(dim_nu1, dim_nu1)-1, 2*self.random.rand(dim_nu1)-1
-    V_2, nu_2 = 2*self.random.rand(dim_nu1, E_size)-1, 2*self.random.rand(dim_nu1)-1
+    dim_ν1 = 3*nb_lights
+    V_1, ν_1 = 2*self.random.rand(dim_ν1, dim_ν1)-1, 2*self.random.rand(dim_ν1)-1
+    V_2, ν_2 = 2*self.random.rand(dim_ν1, E_size)-1, 2*self.random.rand(dim_ν1)-1
 
-    dim_tau1 = proprio*nb_joints
-    U_1, tau_1 = 2*self.random.rand(dim_tau1, dim_tau1)-1, 2*self.random.rand(dim_tau1)-1
-    U_2, tau_2 = 2*self.random.rand(dim_tau1, 3*nb_joints)-1, 2*self.random.rand(dim_tau1)-1
+    dim_τ1 = proprio*nb_joints
+    U_1, τ_1 = 2*self.random.rand(dim_τ1, dim_τ1)-1, 2*self.random.rand(dim_τ1)-1
+    U_2, τ_2 = 2*self.random.rand(dim_τ1, 3*nb_joints)-1, 2*self.random.rand(dim_τ1)-1
 
-    theta, d = .5*self.random.rand(nb_lights)+.5, .5*self.random.rand(nb_eyes)+.5
+    θ, d = .5*self.random.rand(nb_lights)+.5, .5*self.random.rand(nb_eyes)+.5
 
     C = self.random.multivariate_normal(np.zeros(3), retina_size*np.identity(3), (nb_eyes, extero))
 
@@ -156,10 +156,10 @@ class Organism1:
     self.__dict__.update((key, value)
                          for key, value in locals().items() if key != 'self')
 
-    self.dim_mu1, self.W_1, self.mu_1, self.W_2, self.mu_2 = dim_mu1, W_1, mu_1, W_2, mu_2
-    self.dim_nu1, self.V_1, self.nu_1, self.V_2, self.nu_2 = dim_nu1, V_1, nu_1, V_2, nu_2
-    self.dim_tau1, self.U_1, self.tau_1, self.U_2, self.tau_2 = dim_tau1, U_1, tau_1, U_2, tau_2
-    self.theta, self.d, self.C, self.M_0, self.E_0 = theta, d, C, M_0, E_0
+    self.dim_μ1, self.W_1, self.μ_1, self.W_2, self.μ_2 = dim_μ1, W_1, μ_1, W_2, μ_2
+    self.dim_ν1, self.V_1, self.ν_1, self.V_2, self.ν_2 = dim_ν1, V_1, ν_1, V_2, ν_2
+    self.dim_τ1, self.U_1, self.τ_1, self.U_2, self.τ_2 = dim_τ1, U_1, τ_1, U_2, τ_2
+    self.θ, self.d, self.C, self.M_0, self.E_0 = θ, d, C, M_0, E_0
 
     self.self_table = '''**Characteristics**|**Value**
     -|-
@@ -180,10 +180,10 @@ class Organism1:
   def _get_QPaL(self, M, E):
     Q, P, a = [arr.reshape([-1, 3])
             for arr in np.split(
-                self.sigma(self.W_1.dot(self.sigma(self.W_2.dot(M)-self.mu_2))-self.mu_1),
+                self.σ(self.W_1.dot(self.σ(self.W_2.dot(M)-self.μ_2))-self.μ_1),
                 [3*self.nb_joints, 3*self.nb_joints+3*self.nb_eyes])]
 
-    L = self.sigma(self.V_1.dot(self.sigma(self.V_2.dot(E)-self.nu_2))-self.nu_1).reshape([-1, 3])
+    L = self.σ(self.V_1.dot(self.σ(self.V_2.dot(E)-self.ν_2))-self.ν_1).reshape([-1, 3])
 
     return Q, P, a, L
 
@@ -256,8 +256,8 @@ class Organism1:
     QPaL : {4-tuple of arrays, None}, optional
       \\\(Q, P, a\\\) and \\\(L\\\) values. 
       If left unspecified, then they are computed as above, with the `_get_QPaL` method.
-      > This optional argument come in handy for Organisms 2 and 3,
-      > for which we use this very method (avoiding heavy overloading)
+        This optional argument come in handy for Organisms 2 and 3,
+        for which we use this very method (avoiding heavy overloading)
 
     Returns
     -------
@@ -265,9 +265,9 @@ class Organism1:
       Concatenation of proprioceptive and exteroceptive sensory inputs
     """
     Q, P, a, L = self._get_QPaL(M, E) if QPaL is None else QPaL
-    Sp = self.sigma(self.U_1.dot(self.sigma(self.U_2.dot(Q.flatten())-self.tau_2))-self.tau_1)
+    Sp = self.σ(self.U_1.dot(self.σ(self.U_2.dot(Q.flatten())-self.τ_2))-self.τ_1)
     Se = np.array([self.d[i]*
-                    sum(self.theta[j]/np.linalg.norm(P[i]+Rot(a[i]).dot(self.C[i,k])-L[j])**2
+                    sum(self.θ[j]/np.linalg.norm(P[i]+Rot(a[i]).dot(self.C[i,k])-L[j])**2
                         for j in range(self.nb_lights))
                     for i in range(self.nb_eyes)
                     for k in range(self.extero)])
@@ -455,8 +455,7 @@ class Organism2(Organism1):
   Organism 2:
 
     This time, to spice things up: we introduce nonspatial body changes thanks to pupil reflex, and nonspatial changes in the environment via varying light intensities. 
-    > Note that it should add a dimension to the group of compensated movements: on top what we had earlier, we now have eye closing and opening compensating luminance variations.
-
+    
     The default values that have changed compared to Organism 1 are the following ones:
 
     1. The arm has
@@ -504,9 +503,15 @@ class Organism2(Organism1):
                extero=extero, proprio=proprio,
                nb_generating_motor_commands=100,
                nb_generating_env_positions=nb_generating_env_positions,
-               neighborhood_size=neighborhood_size, sigma=sigma):
+               neighborhood_size=neighborhood_size, sigma=σ):
     # Subclass: Initializing out of Organism 1
-    super().__init__(nb_joints=10, nb_eyes=4, nb_lights=5, nb_generating_motor_commands=100)
+    super().__init__(self, seed=seed, retina_size=retina_size, M_size=M_size, E_size=E_size,
+                     nb_joints=nb_joints, nb_eyes=nb_eyes, nb_lights=nb_lights,
+                     extero=extero, proprio=proprio,
+                     nb_generating_motor_commands=nb_generating_motor_commands,
+                     nb_generating_env_positions=nb_generating_env_positions,
+                     neighborhood_size=neighborhood_size, sigma=σ)
+    
   
   def get_sensory_inputs(self, M, E, d=None):
     """
@@ -515,7 +520,7 @@ class Organism2(Organism1):
     Compared to Organism 1
     ~~~~~~~~~~~~~~~~~~~~~~
     
-    The diaphragms \\\(d_i\\\) now satisfy:
+    The diaphragms \\\(d_i\\\) is now satisfy:
 
     $$\\\sum\\\limits_{ k } S_{i, k}^e = 1$$
 
@@ -541,9 +546,78 @@ class Organism2(Organism1):
 
     Q, P, a, L = super()._get_QPaL(M, E)
 
-    self.d = 1./np.array([[sum(self.theta[j]/np.linalg.norm(P[i]+Rot(a[i]).dot(self.C[i,k])-L[j])**2
+    self.d = 1./np.array([[sum(self.θ[j]/np.linalg.norm(P[i]+Rot(a[i]).dot(self.C[i,k])-L[j])**2
                               for j in range(self.nb_lights))
                           for i in range(self.nb_eyes)]
                           for k in range(self.extero)]).sum(axis=1)
+                          
+    return super().get_sensory_inputs(M, E, QPaL=(Q, P, a, L))
+
+
+class Organism3(Organism2):
+  """
+  Organism 3:
+
+  Same as the previous one, except that the diaphragms are controlled by the organism (and not reflex-based anymore).
+
+    Note that it should add a dimension to the group of compensated movements: on top what we had earlier, we now have diaphragm closing and opening compensating luminance variations.    
+  """
+  def __init__(self, seed=1, retina_size=1., M_size=M_size, E_size=E_size,
+               nb_joints=10, nb_eyes=4, nb_lights=5,
+               extero=extero, proprio=proprio,
+               nb_generating_motor_commands=100,
+               nb_generating_env_positions=nb_generating_env_positions,
+               neighborhood_size=neighborhood_size, sigma=σ):
+    # Subclass: Initializing out of Organism 1
+    super().__init__(self, seed=seed, retina_size=retina_size, M_size=M_size, E_size=E_size,
+                     nb_joints=nb_joints, nb_eyes=nb_eyes, nb_lights=nb_lights,
+                     extero=extero, proprio=proprio,
+                     nb_generating_motor_commands=nb_generating_motor_commands,
+                     nb_generating_env_positions=nb_generating_env_positions,
+                     neighborhood_size=neighborhood_size, sigma=σ)
+
+    self.random = np.random.RandomState(seed)
+    #------------------------------------------------------------
+    # Random initializations for the diaphragm-related parameters
+    # (they can be thought of as the last lines of the corresponding matrices)
+
+    self.W_1d, self.μ_1d = 2*self.random.rand(1, dim_μ1)-1, 2*self.random.rand(dim_μ1)-1
+    self.W_2d, self.μ_2d = 2*self.random.rand(1, M_size)-1, 2*self.random.rand(dim_μ1)-1
+
+    self.random_state = self.random.get_state()
+                   
+
+  def get_sensory_inputs(self, M, E, d=None):
+    """
+    Compute sensory inputs for motor command ``M`` and environment position ``E``.
+
+    Compared to Organism 1
+    ~~~~~~~~~~~~~~~~~~~~~~
+    
+    As \\\(\\\mathbf{d}\\\) is under control of the organism, the diaphragms \\\(d_i\\\) now satisfy:
+
+    $$(Q,P,a,d)=σ\\\left(\\\\begin{pmatrix}W_1 \\\\\\\\\\\\ W_1^{(d)}\\\end{pmatrix} \\\cdot 
+    σ\\\left(\\\\begin{pmatrix}W_2 \\\\\\\\\\\\ W_2^{(d)}\\\end{pmatrix}\\\cdot M
+    −\\\\begin{pmatrix}μ_2 \\\\\\\\\\\\ μ_2^{(d)}\\\end{pmatrix}\\\\right)
+    −\\\\begin{pmatrix}μ_1 \\\\\\\\\\\\ μ_1^{(d)}\\\end{pmatrix}\\\\right)$$
+
+    where for all \\\(i∈ \\\lbrace 1, 2 \\\\rbrace\\\), \\\(W_i\\\) (resp. \\\(μ_i\\\)) is ``self.W_i`` (resp ``self.μ_i``)
+
+    Parameters
+    ----------
+    M : (M_size,) array
+      Motor command vector
+    E : (E_size,) array
+      Environmental control vector
+
+    Returns
+    -------
+    (proprio*nb_joints + extero*nb_eyes,) array
+      Concatenation of proprioceptive and exteroceptive sensory inputs
+    """
+
+    Q, P, a, L = super()._get_QPaL(M, E)
+
+    self.d = self.σ(self.W_1d.dot(self.σ(self.W_2d.dot(M)-self.μ_2d))-self.μ_1d)
                           
     return super().get_sensory_inputs(M, E, QPaL=(Q, P, a, L))

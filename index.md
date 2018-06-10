@@ -125,7 +125,7 @@ Light luminance|Fixed
 
 ## Organism 2
 
-This time, to spice things up: we introduce nonspatial body changes thanks to pupil reflex, and nonspatial changes in the environment via varying light intensities. Note that it should add a dimension to the group of compensated movements: on top what we had earlier, we now have eye closing and opening compensating luminance variations.
+This time, to spice things up: we introduce nonspatial body changes thanks to pupil reflex, and nonspatial changes in the environment via varying light intensities.
 
 1. The arm has
 
@@ -156,9 +156,17 @@ Number of lights|$5$
 Light luminance|Variable
 
 
+## Organism 3
 
-> **NB**: Changes made: typos indices, number of proprioceptive inputs, $S_i^p$ computed with $Q$
+Same as the previous one, except that the diaphragms are controlled by the organism (and not reflex-based anymore).
 
+> Note that it should add a dimension to the group of compensated movements: on top what we had earlier, we now have eye closing and opening compensating luminance variations.
+
+For Organism 3, as $d$ is under its control:
+
+$$(Q,P,a,d)=σ\left(\begin{pmatrix}W_1 \\ W_1^{(d)}\end{pmatrix} \cdot σ\left(\begin{pmatrix}W_2 \\ W_2^{(d)}\end{pmatrix}\cdot M−\begin{pmatrix}μ_2 \\ μ_2^{(d)}\end{pmatrix}\right)−\begin{pmatrix}μ_1 \\ μ_1^{(d)}\end{pmatrix}\right)$$
+
+where for all $i∈ \lbrace 1, 2 \rbrace$, $W_i$ (resp. $μ_i$) is ``self.W_i`` (resp ``self.μ_i``)
 
 _____________
 
