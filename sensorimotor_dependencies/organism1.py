@@ -225,23 +225,23 @@ class Organism1:
         Motor command vector
     E : (E_size,) array                                                                          
         Environmental control vector                                                    
-                                                                                               
+                                                                                                
     Returns                                   
     -------                                                                                
     np.concatenate((Sp, Se)) : (proprio*nb_joints + extero*nb_eyes,) array  
     """
     Q, P, a = [arr.reshape([-1, 3]) 
-               for arr in np.split(
-                   self.sigma(self.W_1.dot(self.sigma(self.W_2.dot(M)-self.mu_2))-self.mu_1),
-                   [3*self.nb_joints, 3*self.nb_joints+3*self.nb_eyes])]
+                for arr in np.split(
+                    self.sigma(self.W_1.dot(self.sigma(self.W_2.dot(M)-self.mu_2))-self.mu_1),
+                    [3*self.nb_joints, 3*self.nb_joints+3*self.nb_eyes])]
     
     L = self.sigma(self.V_1.dot(self.sigma(self.V_2.dot(E)-self.nu_2))-self.nu_1).reshape([-1, 3])
     Sp = self.sigma(self.U_1.dot(self.sigma(self.U_2.dot(Q.flatten())-self.tau_2))-self.tau_1)
     Se = np.array([self.d[i]*
-                   sum(self.theta[j]/np.linalg.norm(P[i]+Rot(a[i]).dot(self.C[i,k])-L[j])**2
-                       for j in range(self.nb_lights))
-                   for i in range(self.nb_eyes)
-                   for k in range(self.extero)])
+                    sum(self.theta[j]/np.linalg.norm(P[i]+Rot(a[i]).dot(self.C[i,k])-L[j])**2
+                        for j in range(self.nb_lights))
+                    for i in range(self.nb_eyes)
+                    for k in range(self.extero)])
     return np.concatenate((Sp, Se))
 
   
@@ -252,18 +252,12 @@ class Organism1:
     - the motor command is fixed
     - the environment changes
     
-    Useful to separate proprioceptive inputs from exteroceptive ones
-
-    Parameters                                                                                
-    ----------                                                                                
-    M : (M_size,) array                                                                          
-        Motor command vector
-    E : (E_size,) array                                                                          
-        Environmental control vector                                                    
+    Useful to separate proprioceptive inputs from exteroceptive ones                                                  
                                                                                                
-    Returns                                   
-    -------                                                                                
-    np.concatenate((Sp, Se)) : (proprio*nb_joints + extero*nb_eyes,) array  
+    Example
+    -------
+    >>> O = organism1.Organism1(proprio=1, nb_joints=2, extero=1, nb_eyes=2); O.compute_proprioception(); O.mask_proprio
+    array([ True,  True, False, False], dtype=bool)
     """
     self.random.set_state(self.random_state)
     
@@ -277,6 +271,22 @@ class Organism1:
     self.random_state = self.random.get_state()
       
   def _neighborhood_lin_approx(self, size):
+    """
+    Neighborhood linear approximation:
+
+    Parameters                                                                                
+    ----------                                                                                
+    size : int                                                                      
+        Neighborhood size of the linear approximation                                                    
+                                                                                                
+    Returns                                   
+    -------                                                                                
+    rand_vect : (size,) array
+      Random vector drawn from a normal distribution 
+      with mean zero and standard deviation ``neighborhood_size`` 
+      where coordinates differing from ``0`` by more than 
+      the standard deviation have been set equal to ``0``
+    """
     self.random.set_state(self.random_state)
     
     rand_vect = self.random.normal(0, self.neighborhood_size, size)
@@ -290,9 +300,12 @@ class Organism1:
   def compute_variations(self):
     """
     Compute the variations in the exteroceptive inputs when:
-    1. only the environment changes
-    2. only the motor commands change
-    3. both change
+      1. only the environment changes
+        - result stored in ``self.env_variations``
+      2. only the motor commands change
+        - result stored in ``self.mot_variations``
+      3. both change
+        - result stored in ``self.env_mot_variations``
     """
     self.env_variations = np.array([
         self.get_sensory_inputs(self.M_0,
@@ -311,12 +324,22 @@ class Organism1:
         
   def get_dimensions(self, dim_red='PCA'):
     """
-    Compute the number of parameters needed to describe the exteroceptive variations when:
-    1. only the environment changes
-    2. only the body moves
-    3. both the body and the environment change
-    
-    and then compute the estimated dimension of the group of compensated movements
+    Parameters                                                                                
+    ----------                                                                                
+    dim_red : {'PCA', 'MDA'}, optional                                                                      
+        Dimension reduction algorithm used to compute the number of degrees of freedom.
+
+    Returns                                   
+    -------                                                                                
+    self.dim_rigid_group, self.dim_extero, self.dim_env, self.dim_env_extero : tuple(int, int, int, int)
+      Estimated dimension of the rigid group of compensated movements (stored in ``self.dim_rigid_group``),
+      and number of parameters needed to describe the exteroceptive variations when:
+        1. only the body moves
+          - this number is stored in ``self.dim_extero``
+        2. only the environment changes
+          - this number is stored in ``self.dim_env``
+        3. both the body and the environment change
+          - this number is stored in ``self.dim_env_extero``
     """
     self.compute_proprioception()
     self.compute_variations()
