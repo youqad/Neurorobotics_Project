@@ -83,7 +83,7 @@ presentation:
   viewDistance: 3
 
   # Parallax background image
-  parallaxBackgroundImage: 'https://i.gyazo.com/dccd213d56e5512fc0cdeed6913dd434.png'
+  parallaxBackgroundImage: 'https://i.gyazo.com/b0ccddff134624a2d2dc0bdaa917e393.png'
 
   # Parallax background size
   # parallaxBackgroundSize: "5100px 2800px"
@@ -175,7 +175,7 @@ ____
 
 <span class="fragment fade-down highlight-red" data-fragment-index="1">high-dimensional sensory input vector</span><span class="fragment fade-down highlight-green" data-fragment-index="2">$\qquad \overset{\text{Brain}}{\rightsquigarrow} \qquad \underbrace{\textit{space, attributes, ...}}_{\text{easier to visualize}}$</span>
 
-<img src="intro_drawing.png" alt="Problem statement" style="maxheight: 900px; border:none" class="fragment fade-in" data-fragment-index="3"/>
+<img src="intro_drawing.png" alt="Problem statement" style="max-height: 900px; border:none" class="fragment fade-in" data-fragment-index="3"/>
 
 <!-- slide data-transition="zoom" data-transition-speed="slow" vertical=true -->
 
@@ -187,14 +187,14 @@ All the brain can do:
 
     ⟹ *then* collect <strong class="fragment fade-down highlight-red" data-fragment-index="3">sensory inputs</strong>
 
-<img src="motor_env_sensory.png" alt="Problem statement" style="maxheight: 900px; border:none" class="fragment fade-down" data-fragment-index="4"/>
+<img src="motor_env_sensory.png" alt="Problem statement" style="max-height: 900px; border:none" class="fragment fade-down" data-fragment-index="4"/>
 
 
 <!-- slide data-transition="concave" data-transition-speed="slow" -->
 
-## II. - Exteroception & Compensation
+## I. - Exteroception & Compensation
 
-### II.A Exteroception vs. Proprioception
+### I.A Exteroception vs. Proprioception
 
 <br>
 
@@ -209,11 +209,11 @@ ________________
 
 ### Example
 
-<img src="Haunter_sensory_inputs.png" style="maxheight: 500px; border:none" class="fragment fade-down"/>
+<img src="Haunter_sensory_inputs.png" style="max-height: 500px; border:none" class="fragment fade-down"/>
 
 <!-- slide data-transition="convex" data-transition-speed="slow" -->
 
-### II.B - Compensated movements
+### I.B - Compensated movements
 
 <br>
 
@@ -221,47 +221,122 @@ ________________
 >
 >: Variations of the motor command and the environment that compensate one another.
 
-<img src="compensated_movements_step1.png" style="maxheight: 900px; border:none" class="fragment fade-down"/>
+<img src="compensated_movements_step1.png" style="max-height: 900px; border:none" class="fragment fade-down"/>
 
 
 
 <!-- slide data-transition="zoom" data-transition-speed="slow" vertical=true -->
 
-<img src="compensated_movements_step2.png" style="maxheight: 900px; border:none" class="fragment fade-down"/>
+<img src="compensated_movements_step2.png" style="max-height: 460px; border:none" class="fragment fade-down"/>
+<img src="compensated_movements_step3.png" style="max-height: 460px; border:none" class="fragment fade-down"/>
 
-<img src="compensated_movements_step3.png" style="maxheight: 900px; border:none" class="fragment fade-down"/>
+> **Relative distance between them** is the same at steps 1 & 3
+
+<!-- slide data-transition="concave" data-transition-speed="slow" data-background-image="./background_paved.png"  -->
+
+### Organism 1
+
+<img src="organisms/org1.png"/>
+
+<!-- slide data-transition="concave" data-transition-speed="slow" data-background-image="background_paved.png"  -->
+
+<img src="organisms/org2.png" style="max-height: 500px; border:none" class="fragment fade-down"/>
+
+<img src="organisms/org3.png" style="max-height: 500px; border:none" class="fragment fade-down"/>
+
+<img src="organisms/org4.png" style="max-height: 500px; border:none" class="fragment fade-down"/>
+
 
 <!-- slide data-transition="concave" data-transition-speed="slow" -->
 
-### II. Principal component analysis (PCA)
+### II. Mathematical formulation
 
-> **Goal**: Find *orthogonal axes* onto which the *variance* of the data points under projection is *maximal*, i.e. find the *best possible "angles"* from which the data points are the most *spread out*.
+<br>
 
-<img src="PCA_drawing.png" alt="PCA" style="maxheight: 900px; border:none" class="fragment fade-in" data-fragment-index="1"/>
+$$
+\begin{align*}
+\mathcal{E} &≝ \lbrace E ∈ \text{environmental states}\rbrace\\
+\mathcal{M} &≝ \lbrace M ∈ \text{motor commands}\rbrace\\
+\mathcal{S} &≝ \lbrace S ∈ \text{sensory inputs}\rbrace
+\end{align*}
+$$
 
-<!-- slide data-transition="convex" data-transition-speed="slow" -->
+are **manifolds** of dimension $e, m$ and $s$ respectively such that:
 
-### III. Isomap
+<br>
 
-> **Goal**: MDS **but** *curvature* of the data space taken into account
+>$$\mathcal{S} = ψ(\mathcal{M} × \mathcal{E})$$
 
-⟶ *geodesic* distance:
+<br><br>
 
-: length of paths on curved manifold surfaces are measured as if they were flat
+________________
 
-<img src="Isomap_drawing.png" alt="Isomap" style="maxheight: 300px; border:none" class="fragment fade-in" data-fragment-index="1"/>
+<br>
+
+**NB**: We are only considering **exteroceptive inputs**, *i.e.* points $S^e ∈ \mathcal{S}$ s.t.:
+
+$$∃ \mathcal{M}' ⊆ \mathcal{M}; \; ψ^{-1}(S^e) = \mathcal{M}' × \mathcal{E}$$
 
 
-<!-- slide data-transition="convex" data-transition-speed="slow" -->
+<!-- slide data-transition="convex" data-transition-speed="slow" vertical=true -->
 
-### IV. Locally-Linear Embedding (LLE)
+Pushforward of $(M_0, E_0)$ by $ψ$
+
+⟹ Tangent space at $S_0 ≝ ψ(M_0, E_0)$:
+
+> $$\lbrace dS \rbrace =  \lbrace dS \rbrace_{dE=0} + \lbrace dS \rbrace_{dM=0}$$
+
+Moreover:
+
+- $\lbrace dS \rbrace_{dE=0}$ is the tangent space of $ψ(E_0, \mathcal{M})$ at $S_0$
+- $\lbrace dS \rbrace_{dM=0}$ is the tangent space of $ψ(\mathcal{E}, M_0)$ at $S_0$
+
+<br>
+
+<img src="tangent_space.png" style="max-height: 500px; border:none" class="fragment fade-down"/>
+
+<!-- slide data-transition="convex" data-transition-speed="slow" vertical=true -->
+
+$$\mathcal{C}(M_0, E_0) ≝ ψ(\mathcal{E}, M_0) ∩ ψ(\mathcal{E}, M_0)$$
+
+<br>
+
+**Along $\mathcal{C}(M_0, E_0)$:** exteroceptive changes obtained by adding
+
+- either $dE$
+- or $dM$.
+
+<br>
+
+________________
+
+<br>
+
+Compensated (infinitesimal) movements:
+
+: when infinitesimal changes along $\lbrace dS \rbrace_{dE=0}$ and $\lbrace dS \rbrace_{dM=0}$ compensate one another
+
+<br> <br>
+
+Dimension of the space of compensated movements:
+
+: $$d ≝ \dim \underbrace{\lbrace dS_{dM=0} \mid ∃ dS_{dE=0}; dS_{dM=0} + dS_{dE=0} = 0 \rbrace}_{= \; \lbrace dS \rbrace_{dE=0} ∩ \lbrace dS \rbrace_{dM=0}} = \dim \mathcal{C}(M_0, E_0)$$
 
 
-> **Goal**: Preserve the relationship between neighbors.
+<!-- slide data-transition="convex" data-transition-speed="slow" vertical=true -->
 
-1. Find the weight matrix $(W_{i,j})_{i,j}$ - whose rows sum to $1$ - that minimizes $$\sum\limits_{x_i \text{ data point}} \Big\vert \; x_i - \sum\limits_{x_j \text{ neighbor of } x_i} W_{i, j} x_j \;\Big\vert^2$$
+<br><br>
 
-2. Map each data point $x_i$ to a point $y_i$ in the vizualization, s.t. the $y_k$'s minimize $$\sum\limits_{y_i \text{ data point}} \Big\vert \; y_i - \sum\limits_{y_j \text{ neighbor of } y_i} W_{i, j} y_j \;\Big\vert^2$$
+So **by Grassmann formula:**
+
+<br>
+
+>$$\begin{align*}
+d \quad &≝ \quad \dim \lbrace dS \rbrace_{dE=0} ∩ \lbrace dS \rbrace_{dM=0}\\
+\quad &= \quad \dim \lbrace dS \rbrace_{dE=0} + \dim \lbrace dS \rbrace_{dM=0} \\
+\quad & \qquad - \dim \Big( \underbrace{\lbrace dS \rbrace_{dE=0} +\lbrace dS \rbrace_{dM=0}}_{= \lbrace dS \rbrace} \Big)\\ \\
+\quad &= \quad \dim \lbrace dS \rbrace_{dE=0} + \dim \lbrace dS \rbrace_{dM=0} - \dim (\lbrace dS \rbrace)
+\end{align*}$$
 
 
 <!-- slide data-transition="convex" data-transition-speed="slow" -->
@@ -281,7 +356,7 @@ Map points are:
 
 <br/>
 
-<img src="tSNE_step0.png" alt="t-SNE" style="maxheight: 500px; border:none" class="fragment fade-in" data-fragment-index="2"/>
+<img src="tSNE_step0.png" alt="t-SNE" style="max-height: 500px; border:none" class="fragment fade-in" data-fragment-index="2"/>
 
 <em class="fragment fade-in" data-fragment-index="2">Image courtesy of <a src="https://statquest.org/2017/09/18/statquest-t-sne-clearly-explained/">statquest.org</a></em>
 
@@ -301,7 +376,7 @@ $$p_{j\mid i} ≝ \frac{\exp(-\vert\vert x_i-x_j\vert\vert^2/2\sigma^2)}{\sum_{k
 <div style="text-align:left; margin-left:10%">⟶ "similarity" between data points</div>
 
 
-<img src="tSNE_step1.png" alt="t-SNE" style="maxheight: 500px; border:none" class="fragment fade-in" data-fragment-index="1"/>
+<img src="tSNE_step1.png" alt="t-SNE" style="max-height: 500px; border:none" class="fragment fade-in" data-fragment-index="1"/>
 
 <!-- slide data-transition="convex" data-transition-speed="slow" vertical=true data-background-image=dark-background.jpg -->
 
@@ -356,7 +431,7 @@ $$p_{i,j} ≝ \frac{p_{j\mid i} + p_{i\mid j}}{2n}$$
 
 - **input data** ⟶ shape changed from a layer to another: a *representation* is the reshaped data at a given layer.
 
-<img src="NN_transform.png" alt="t-SNE" style="maxheight: 500px; border:none" class="fragment fade-in" data-fragment-index="1"/>
+<img src="NN_transform.png" alt="t-SNE" style="max-height: 500px; border:none" class="fragment fade-in" data-fragment-index="1"/>
 
 
 > Since representations are high-dimensional ⟹ DR methods to visualize them
@@ -382,13 +457,13 @@ $$p_{i,j} ≝ \frac{p_{j\mid i} + p_{i\mid j}}{2n}$$
 
 ### ReLU
 
-<img src="meta-SNE_2.png" alt="meta-SNE" style="maxheight: 500px; border:none" class="fragment fade-in" data-fragment-index="2"/>
+<img src="meta-SNE_2.png" alt="meta-SNE" style="max-height: 500px; border:none" class="fragment fade-in" data-fragment-index="2"/>
 
 <!-- slide data-transition="convex" data-transition-speed="slow" data-background-image=dark-background.jpg vertical=true -->
 
 ### CNN
 
-<img src="meta-SNE_3.png" alt="meta-SNE" style="maxheight: 500px; border:none" class="fragment fade-in" data-fragment-index="3"/>
+<img src="meta-SNE_3.png" alt="meta-SNE" style="max-height: 500px; border:none" class="fragment fade-in" data-fragment-index="3"/>
 
 
 <!-- slide  data-transition="convex" data-transition-speed="slow" -->
