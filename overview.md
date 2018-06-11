@@ -30,11 +30,11 @@ and then we collect sensory inputs, which are twofold:
 
 __________
 
-*Example:* consider the pokémon Shellder for example:
+*Example:* let's consider the pokémon Haunter for example:
 
-![Shellder](https://cdn.bulbagarden.net/upload/thumb/4/40/090Shellder.png/250px-090Shellder.png)
+![Haunter](https://cdn.bulbagarden.net/upload/6/62/093Haunter.png)
 
-and let's say, for the sake of simplicity, that it is an organism comprised of one mouth/shell and some eyes. As it happens, proprioception is the location of its tongue in its shell, and exteroception is the visual input from its eyes. So the proprioceptive body, in this case, would only be its tongue's location in its mouth, *i.e.* all the information about the body the brain gets from proprioception only (not the visual cues it gets from the environment via its eyes).
+Here, proprioception encompasses locating his hands and body in space, and exteroception consists in visual inputs from its eyes and gustatory perception in his mouth. So the proprioceptive body in this case would be the information about the body the brain gets from proprioception only, *i.e.:* only its limbs location in space (not the visual/gustatory cues its gets from the environment via its eyes and mouth).
 
 ___________
 

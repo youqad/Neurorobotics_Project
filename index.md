@@ -227,11 +227,11 @@ But in simulation 1, the organism is not able to issue such motor commands as "c
 
 It's sort of a misuse of language (to be more concise), but what is actually meant by "proprioceptive body" as far as I know is "the body, accessed through all its prioprioceptive sensory inputs and only them".
 
-*Ex:* let's consider the pokémon Shellder for example:
+*Ex:* let's consider the pokémon Haunter for example:
 
-![Shellder](https://cdn.bulbagarden.net/upload/thumb/4/40/090Shellder.png/250px-090Shellder.png)
+![Haunter](https://cdn.bulbagarden.net/upload/6/62/093Haunter.png)
 
-and let's say, for the sake of simplicity, that it's an organism comprised of one mouth/shell and some eyes. As before, the proprioception is the location of its tongue in its shell, and the exteroception is the visual inputs from its eyes. So the proprioceptive body in this case would be the information about the body the brain gets from the proprioception only, *i.e.:* only its tongue's location in its mouth (not the visual cues its gets from the environment via its eyes).
+Here, proprioception encompasses locating his hands and body in space, and exteroception consists in visual inputs from its eyes and gustatory perception in his mouth. So the proprioceptive body in this case would be the information about the body the brain gets from proprioception only, *i.e.:* only its limbs location in space (not the visual/gustatory cues its gets from the environment via its eyes and mouth).
 
 In other words: the **proprioceptive (resp. exteroceptive) body** is "all the body parts dedicated to proprioception (resp. exteroception)", so to say.
 
