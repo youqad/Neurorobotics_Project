@@ -145,7 +145,7 @@ $$
 
 ##### *Based on* D. Philipona, J. O’Regan, and J. Nadal's 2003 article
 
-[Documentation](https://neurorobotics-project.readthedocs.io) / [Associated Jupyter Notebook](/ipynb/neurorobotics/Inferring_Space_from_Sensorimotor_Dependencies.ipynb.html)
+[Documentation](https://neurorobotics-project.readthedocs.io) / [Associated Jupyter Notebook](/ipynb/neurorobotics/Inferring_Space_from_Sensorimotor_Dependencies.html)
 
 
 </div>
@@ -225,27 +225,51 @@ ________________
 
 
 
-<!-- slide data-transition="zoom" data-transition-speed="slow" vertical=true -->
+<!-- slide data-transition="concave" data-transition-speed="slow" vertical=true -->
 
 <img src="compensated_movements_step2.png" style="max-height: 460px; border:none" class="fragment fade-down"/>
 <img src="compensated_movements_step3.png" style="max-height: 460px; border:none" class="fragment fade-down"/>
 
-> **Relative distance between them** is the same at steps 1 & 3
+<div class="fragment fade-down"><strong>Relative distance between them</strong> is the same at steps 1 & 3</div>
 
-<!-- slide data-transition="concave" data-transition-speed="slow" data-background-image="./background_paved.png"  -->
+<!-- slide data-transition="convex" data-transition-speed="slow" data-background-image="http://younesse.net/images/light-gradient-blue.jpg" -->
 
 ### Organism 1
 
-<img src="organisms/org1.png"/>
+<img src="organisms/org1.png" style="max-height: 1000px"/>
 
-<!-- slide data-transition="concave" data-transition-speed="slow" data-background-image="background_paved.png"  -->
+<!-- slide data-transition="convex" data-transition-speed="slow" data-background-image="http://younesse.net/images/light-gradient-blue.jpg" vertical=true -->
 
-<img src="organisms/org2.png" style="max-height: 500px; border:none" class="fragment fade-down"/>
+<img src="organisms/org2.png" style="max-height: 1050px"/>
 
-<img src="organisms/org3.png" style="max-height: 500px; border:none" class="fragment fade-down"/>
+<!-- slide data-transition="convex" data-transition-speed="slow" data-background-image="http://younesse.net/images/light-gradient-blue.jpg" vertical=true -->
 
-<img src="organisms/org4.png" style="max-height: 500px; border:none" class="fragment fade-down"/>
+<img src="organisms/org3.png" style="max-height: 1050px"/>
 
+<!-- slide data-transition="convex" data-transition-speed="slow" data-background-image="http://younesse.net/images/light-gradient-blue.jpg" vertical=true -->
+
+<img src="organisms/org4.png" style="max-height: 1050px"/>
+
+<!-- slide data-transition="convex" data-transition-speed="slow" data-background-image="http://younesse.net/images/light-gradient-blue.jpg" vertical=true -->
+
+<img src="organisms/org4.png" style="max-height: 1050px"/>
+
+<!-- slide data-transition="convex" data-transition-speed="slow" data-background-image="http://younesse.net/images/light-gradient-blue.jpg" vertical=true -->
+
+<img src="organisms/org5.png" style="max-height: 1050px"/>
+
+<!-- slide data-transition="convex" data-transition-speed="slow" data-background-image="http://younesse.net/images/light-gradient-blue.jpg" vertical=true -->
+
+<img src="organisms/org6.png" style="max-height: 1050px"/>
+
+
+<!-- slide data-transition="convex" data-transition-speed="slow" data-background-image="http://younesse.net/images/light-gradient-blue.jpg" vertical=true -->
+
+<img src="organisms/org7.png" style="max-height: 600px"/>
+
+Compensable movements: **exactly what stems from the notion of the physical space in the sensory inputs**
+
+> *So the true goal:* computing the dimension of the rigid group of compensated movements.
 
 <!-- slide data-transition="concave" data-transition-speed="slow" -->
 
@@ -341,131 +365,158 @@ d \quad &≝ \quad \dim \lbrace dS \rbrace_{dE=0} ∩ \lbrace dS \rbrace_{dM=0}\
 
 <!-- slide data-transition="convex" data-transition-speed="slow" -->
 
-## t-Distributed Stochastic Neighbor Embedding (t-SNE)
+## Algorithm
 
-<div>
-<span class="fragment fade-down highlight-blue" data-fragment-index="1">the relation "being neighbors"</span><span class="fragment fade-down highlight-red" data-fragment-index="2">$\qquad \rightsquigarrow \qquad \underbrace{\textit{"continuous range of neighborness"}}_{\text{probability distribution}}$</span>
-</div>
 
-________________
+```python
 
-Map points are:
+Get rid of proprioceptive inputs  # (these don't change when no motor command is issued and the environment changes)
 
-- attracted to points that are near them in the data set
-- repelled by points that are far from them in the data set
+for "source" in [motor commands, environment, both]:
+    Estimate dim(space of sensory inputs resulting from "source" variations)
 
-<br/>
+dim(compensated movements) =   dim(inputs resulting from motor commands variations)
+                             + dim(inputs resulting from environment variations)
+                             - dim(inputs resulting from both variations)
+```
 
-<img src="tSNE_step0.png" alt="t-SNE" style="max-height: 500px; border:none" class="fragment fade-in" data-fragment-index="2"/>
+### Principal Component Analysis
 
-<em class="fragment fade-in" data-fragment-index="2">Image courtesy of <a src="https://statquest.org/2017/09/18/statquest-t-sne-clearly-explained/">statquest.org</a></em>
+
+> **Goal**: Find *orthogonal axes* onto which the *variance* of the data points under projection is *maximal*, i.e. find the *best possible "angles"* from which the data points are the most *spread out*.
+
+<img src="PCA_drawing.png" alt="PCA" style="maxheight: 900px; border:none" class="fragment fade-in" data-fragment-index="1"/>
+
+
+<!-- slide data-transition="convex" data-transition-speed="slow" vertical=true data-background-image="http://younesse.net/images/pixel-light.jpg" -->
+
+### Implementation
+
+[![Documentation Status](https://readthedocs.org/projects/neurorobotics-project/badge/?version=latest)](https://neurorobotics-project.readthedocs.io/en/latest/?badge=latest) <iframe src="https://ghbtns.com/github-btn.html?user=youqad&repo=Neurorobotics_Project&type=watch&size=large&v=2" frameborder="0" scrolling="0" width="160px" height="44px"></iframe>
+
+```
+Neurorobotics_Project
+│   index.md
+│
+└───sensorimotor_dependencies
+│   │   __init__.py
+│   │   utils.py
+│   │   organisms.py
+│   
+└───docs
+    │   ...
+```
+
+**where**
+
+```
+- utils.py ⟹ utility functions, among which dimension reduction algorithms
+- organisms.py ⟹ Organism1(), Organism2(), Organism3()
+```
+
+<!-- slide data-transition="convex" data-transition-speed="slow" vertical=true data-background-image="http://younesse.net/images/pixel-light.jpg" -->
+
+### Object-Oriented Programming
+
+```python
+class Organism1:
+  def __init__(self, seed=1, retina_size=1., M_size=M_size, E_size=E_size,
+               nb_joints=nb_joints, nb_eyes=nb_eyes, nb_lights=nb_lights,
+               extero=extero, proprio=proprio,
+               nb_generating_motor_commands=nb_generating_motor_commands,
+               nb_generating_env_positions=nb_generating_env_positions,
+               neighborhood_size=neighborhood_size, sigma=σ):
+
+    self.random = np.random.RandomState(seed)
+
+    #------------------------------------------------------------
+    # Random initializations / Setting attributes
+
+    # [...]
+
+    self.random_state = self.random.get_state()
+
+  def get_sensory_inputs(self, M, E, QPaL=None):
+      # [...]
+
+  def get_proprioception(self):
+      # [...]    
+
+  def get_variations(self):
+    self.env_variations = ...
+    self.mot_variations = ...
+    self.env_mot_variations = ...
+
+  def get_dimensions(self, dim_red='PCA'):
+    self.get_proprioception()
+    self.get_variations()
+
+    # Now the number of degrees of freedom!
+    self.dim_env = dim_reduction_dict[dim_red](self.env_variations)
+    self.dim_extero = ...
+    self.dim_env_extero = ...
+    self.dim_rigid_group = ...
+
+    return self.dim_rigid_group, self.dim_extero, self.dim_env, self.dim_env_extero
+```
+
+<!-- slide data-transition="convex" data-transition-speed="slow" vertical=true data-background-image="http://younesse.net/images/dark-background.jpg" -->
+
+```python
+>>>  O = organisms.Organism1(); O.get_dimensions()
+(4, 10, 5, 11)
+
+>>> print(str(O))
+```
+
+**Characteristics**|**Value**
+-|-
+Dimension of motor commands|40
+Dimension of environmental control vector|40
+Dimension of proprioceptive inputs|16
+Dimension of exteroceptive inputs|40
+Number of eyes|2
+Number of joints|4
+Diaphragms|None
+Number of lights|3
+Light luminance|Fixed
+Dimension for body (p)|10
+Dimension for environment (e)|5
+Dimension for both (b)|11
+Dimension of group of compensated movements|4
+
 
 <!-- slide data-transition="convex" data-transition-speed="slow" vertical=true data-background-image=dark-background.jpg -->
 
-
-### Step 1
-
-<div style="text-align:left; margin-left:10%">Compute conditional probabilities</div>
-
-$$p_{j\mid i} ≝ \frac{\exp(-\vert\vert x_i-x_j\vert\vert^2/2\sigma^2)}{\sum_{k\neq i}\exp(-\vert\vert x_i-x_k\vert\vert^2/2\sigma^2)}$$
-
-> probability that $x_i$ has $x_j$ as its neighbor if neighbors were chosen according to a Gaussian distribution centered at $x_i$
-
-<br />
-
-<div style="text-align:left; margin-left:10%">⟶ "similarity" between data points</div>
-
-
-<img src="tSNE_step1.png" alt="t-SNE" style="max-height: 500px; border:none" class="fragment fade-in" data-fragment-index="1"/>
+# EMPTY
 
 <!-- slide data-transition="convex" data-transition-speed="slow" vertical=true data-background-image=dark-background.jpg -->
 
-### Step 2
-
-<div style="text-align:left; margin-left:10%">Then symmetrize the conditional probabilities:</div>
-
-$$p_{i,j} ≝ \frac{p_{j\mid i} + p_{i\mid j}}{2n}$$
-
-<img src="tSNE_step2.png" alt="t-SNE" style="margin-left: 15%; border:none; float: left" class="fragment fade-in" data-fragment-index="1"/>
-
-<img src="tSNE_step3.png" alt="t-SNE" style="margin-right: 15%; border:none; float: right" class="fragment fade-in" data-fragment-index="2"/>
-
-<!-- slide data-transition="convex" data-transition-speed="slow" vertical=true data-background-image=dark-background.jpg -->
-
-### Step 3
-
-- $y_i$'s initialized at random
-
-- Similarities between visualization points:
-
-    $$q_{i,j} ≝ \frac{(1+\vert\vert y_i-y_j\vert\vert^2)^{-1}}{\sum_{k\neq l}(1+\vert\vert y_i-y_l\vert\vert^2)^{-1}}$$
-
-    ⟶ computed with resort to a Student-$t$ distribution
-
-
-<br>
-
-<img src="student_vs_gaussian.png" alt="t-SNE" style="border:none;" class="fragment fade-in" data-fragment-index="2"/>
-
-<br>
-
-<img src="tSNE_step3bis.png" alt="t-SNE" style="border:none;" class="fragment fade-in" data-fragment-index="3"/>
+# EMPTY
 
 
 <!-- slide data-transition="convex" data-transition-speed="slow" vertical=true data-background-image=dark-background.jpg -->
 
-### Step 4
-
-- Minimize the Kullback–Leibler divergence: $C ≝ \sum_{i≠ j}p_{ij}\log {\frac {p_{i,j}}{q_{i,j}}}$, by modifying the $y_i$'s with gradient descent
-
-- Recompute the $q_{i,j}$'s at each step (until convergence is reached)
-
-<img src="tSNE_step4.png" alt="t-SNE" style="border:none" class="fragment fade-in" data-fragment-index="1"/>
+# EMPTY
 
 
 <!-- slide data-transition="concave" data-transition-speed="slow" -->
 
-## Dimensionality reduction to visualize high-dimensional representations
-
-*In a neural network:*
-
-- **input data** ⟶ shape changed from a layer to another: a *representation* is the reshaped data at a given layer.
-
-<img src="NN_transform.png" alt="t-SNE" style="max-height: 500px; border:none" class="fragment fade-in" data-fragment-index="1"/>
-
-
-> Since representations are high-dimensional ⟹ DR methods to visualize them
+# EMPTY
 
 
 <!-- slide data-transition="concave" data-transition-speed="slow" -->
 
-### meta-SNE to visualize the space of representations
-
-
-1. Build matrices of pairwise distances: $$D_X ≝ \left(d_X(x_i, x_j)\right)_{i,j}$$ ⟹ vectorize representations
-
-2. *Step up the ladder of abstraction*: visualize vectorized representations with t-SNE
-
-
-> Regarding neural networks: meta-SNE enables us no longer to confine ourselves to comparing their outcome only, but also how they operate internally.
+# EMPTY
 
 <!-- slide data-transition="convex" data-transition-speed="slow" data-background-image=dark-background.jpg vertical=true -->
 
-### Sigmoid
-
-<img src="meta-SNE_1.png" alt="meta-SNE" class="fragment fade-in" data-fragment-index="1"/>
-
-### ReLU
-
-<img src="meta-SNE_2.png" alt="meta-SNE" style="max-height: 500px; border:none" class="fragment fade-in" data-fragment-index="2"/>
+# EMPTY
 
 <!-- slide data-transition="convex" data-transition-speed="slow" data-background-image=dark-background.jpg vertical=true -->
 
-### CNN
-
-<img src="meta-SNE_3.png" alt="meta-SNE" style="max-height: 500px; border:none" class="fragment fade-in" data-fragment-index="3"/>
-
+# EMPTY
 
 <!-- slide  data-transition="convex" data-transition-speed="slow" -->
 
-# IV. Conclusion
+# Conclusion
