@@ -215,34 +215,21 @@ ________________
 
 ### II.B - Compensated movements
 
-> The smaller the original distance between points is, the more preserved it is
+<br>
 
+>Compensated movements:
+>
+>: Variations of the motor command and the environment that compensate one another.
 
-*Cost function to minimize:*
+<img src="compensated_movements_step1.png" style="maxheight: 900px; border:none" class="fragment fade-down"/>
 
-<div class="fragment fade-down" data-fragment-index="1">
-$$\sum\limits_{x_i ≠ x_j \text{ data points}} \Big(\frac{d^\ast(x_i, x_j) - d(x_i, x_j)}{d^\ast(x_i, x_j)}\Big)^2$$
-</div>
 
 
 <!-- slide data-transition="zoom" data-transition-speed="slow" vertical=true -->
 
-## I.C - Force-directed Graph Drawing
+<img src="compensated_movements_step2.png" style="maxheight: 900px; border:none" class="fragment fade-down"/>
 
-
-> Build the graph where each point is connected to its $k$ nearest neighbors in original space, then:
->
->
->**Graph**|**Physical analogy**|
->-|-
->vertices|repelling charged particles|
->edges|springs|
-
-<br />
-
-As with <span class="fragment highlight-red" data-fragment-index="1">electric potential energy</span> and <span class="fragment highlight-blue" data-fragment-index="2">spring energy</span>, minimize the **potential energy function**:
-
-<span class="fragment highlight-red" data-fragment-index="4">$\displaystyle \sum\limits_{x_i ≠ x_j \text{ data points}} \frac{1}{d^\ast(x_i, x_j)}$</span> $+$ <span class="fragment highlight-blue" data-fragment-index="5">$\displaystyle \sum\limits_{x_i, x_j \text{ data points}} \frac 1 2 \Big(d^\ast(x_i, x_j) - d(x_i, x_j)\Big)^2$</span>
+<img src="compensated_movements_step3.png" style="maxheight: 900px; border:none" class="fragment fade-down"/>
 
 <!-- slide data-transition="concave" data-transition-speed="slow" -->
 
