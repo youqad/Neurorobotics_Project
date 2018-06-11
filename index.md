@@ -191,7 +191,7 @@ Now, the motor commands are the commands the "brain" of the organism sends to it
 
 ## Input source include Exteroceptive input (from environment) & Proprioceptive input (from body)?
 
-- Prioprioceptive inputs are sensory input of the organism that don't change when the environment does (i.e. they don't depend on the environment) ⇒ ex: the feeling of your tongue's location in your mouth: even if the luminance of the environment changes, it doesn't change anything as to where you feel your tongue is in your mouth. In our simulation: it's the feeling of the location of the organism's joints.
+- Prioprioceptive inputs are sensory input of the organism that don't change when the environment does (i.e. they don't depend on the environment) ⇒ ex: the feeling of your limbs' location in space, which enables you to know where they are without relying on environmental (e.g. visual) inputs. In our simulation: it's the feeling of the location of the organism's joints.
 
 - On the other hand, exteroceptive inputs and sensory inputs of the organism that may be modified by the environment ⇒ ex: visual inputs: when the luminance/the aspect of the surrounding environment change, your sensory input related to vision changes as well, as you see different things. (same situation in the simulation)
 

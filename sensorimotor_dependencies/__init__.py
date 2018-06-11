@@ -28,9 +28,7 @@ and then we collect sensory inputs, which are twofold:
 
    *Examples*:
 
-   -  the feeling of your tongue’s location in your mouth: even if the
-      luminance of the environment changes, it doesn’t change anything
-      as to where you feel your tongue is in your mouth
+   -  the feeling of your limbs' location in space, which enables you to know where they are without relying on environmental (e.g. visual) inputs.
    -  *in the following simulation:* it will be the feeling of the
       location of the organism’s arm joints (ex: the
       position/configuration of its arm joints)
@@ -176,7 +174,7 @@ So the overall algorithm is as follows:
 __version__ = '0.0.1'
 __name__ = 'sensorimotor_dependencies'
 __author__ = 'Kexin Ren and Younesse Kaddar'
-__credits__ = ['Kexin Ren', 'Younesse Kaddar', 'David Philipona', 
+__credits__ = ['Kexin Ren', 'Younesse Kaddar', 'David Philipona',
             'J.K. O\'Regan', 'Jean-Pierre Nadal']
 __email__ = 'youqad@gmail.com'
 __github__ = 'https://github.com/youqad/Neurorobotics_Project'

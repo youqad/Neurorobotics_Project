@@ -83,7 +83,7 @@ presentation:
   viewDistance: 3
 
   # Parallax background image
-  parallaxBackgroundImage: 'http://younesse.net/images/Neurorobotics/brain_background.png'
+  parallaxBackgroundImage: 'https://i.gyazo.com/dccd213d56e5512fc0cdeed6913dd434.png'
 
   # Parallax background size
   # parallaxBackgroundSize: "5100px 2800px"
@@ -173,29 +173,43 @@ ____
 
 <!-- slide data-transition="convex" data-transition-speed="slow" -->
 
-### I. Introduction: you said "space"?
-
-#### Dimensionality Reduction
-
+### Introduction: you said "space"?
 
 <span class="fragment fade-down highlight-red" data-fragment-index="1">high-dimensional sensory input vector</span><span class="fragment fade-down highlight-green" data-fragment-index="2">$\qquad \overset{\text{Brain}}{\rightsquigarrow} \qquad \underbrace{\textit{space, attributes, ...}}_{\text{easier to visualize}}$</span>
 
-> **Manifold hypothesis**: real-world high-dimensional data vectors lie in a lower-dimensional embedded manifold.
-
 <img src="intro_drawing.png" alt="Problem statement" style="maxheight: 900px; border:none" class="fragment fade-in" data-fragment-index="3"/>
 
+<!-- slide data-transition="zoom" data-transition-speed="slow" vertical=true -->
 
-<!-- slide data-transition="zoom" data-transition-speed="slow" -->
+All the brain can do:
+
+:   1. issue <strong class="fragment fade-down highlight-blue" data-fragment-index="1">motor commands</strong>
+
+    2. observe the resulting <strong class="fragment fade-down highlight-green" data-fragment-index="2">environmental changes</strong>
+
+    ⟹ *then* collect <strong class="fragment fade-down highlight-red" data-fragment-index="3">sensory inputs</strong>
+
+<img src="motor_env_sensory.png" alt="Problem statement" style="maxheight: 900px; border:none" class="fragment fade-down" data-fragment-index="4"/>
+
+
+<!-- slide data-transition="concave" data-transition-speed="slow" -->
 
 ## II. - Proprioception & Exteroception
 
-> **Goal**: Preserve distances between points ⟹ conserve geometry
+<br>
 
-*Gradient descent* to minimize
+|Sensory input|Definition|
+-|-
+<span class="fragment highlight-blue">*Proprioceptive*</span>|<span class="fragment highlight-blue">independent</span> of the environment
+<span class="fragment highlight-green">*Exteroceptive*</span>|<span class="fragment highlight-green">dependent</span> of the environment
 
-<div class="fragment fade-down" data-fragment-index="1">
-$$\sum\limits_{x_i ≠ x_j \text{ data points}} \Big(\underbrace{d^\ast(x_i, x_j)}_{\text{dist. in original space}} - \overbrace{d(x_i, x_j)}^{\text{dist. in visualization}}\Big)^2$$
-</div>
+<br>
+
+________________
+
+### Example
+
+<img src="Shellder.png" style="maxheight: 900px; border:none" class="fragment fade-down"/>
 
 <!-- slide data-transition="zoom" data-transition-speed="slow" vertical=true -->
 
