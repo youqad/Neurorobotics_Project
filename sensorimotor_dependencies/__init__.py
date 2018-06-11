@@ -73,20 +73,14 @@ that react the environmental changes. In particular, we pay close
 attention to **compensable movements**, that appear in situations like
 these:
 
--  **Step 0:** a fixed exteroceptive sensor has a value (x) (ex: looking
+-  **Step 1:** a fixed exteroceptive sensor has a value (x) (ex: looking
    at an object in front of oneself, the sensors being the cone cells in
    the retina for instance)
--  **Step 1:** an environmental change (dE) modifies this value (which
-   can indeed be modified
-
--  **Step 0:** a fixed exteroceptive sensor has a value (x) (ex: looking
-   at an object in front of oneself, the sensors being the cone cells in
-   the retina for instance)
--  **Step 1:** a environmental change (dE) modifies this value (which
+-  **Step 2:** a environmental change (dE) modifies this value (which
    can indeed be modified by environmental changes as the sensor is
    exteroceptive) and sets it to (y) (ex: the object moves (1) meter
    forward: it looks smaller, as it is farther)
--  **Step 2:** one notices that there exists a certain motor command
+-  **Step 3:** one notices that there exists a certain motor command
    (dM) that can bring this exteroceptive value back to (x) (ex: the
    brain orders the legs to walk one meter forward, and then one sees
    the object looks exactly as big as before).

@@ -158,13 +158,11 @@ ____
 
 ____
 
-### I. Proprioception vs. Exteroception
+### I. Exteroception & Compensation
 
-### II. Compensated Movements
+### II. Mathematical formulation
 
-### III. Mathematical formulation
-
-### IV. Algorithm
+### III. Algorithm
 
 ### V. Simulations and Beyond
 
@@ -194,7 +192,9 @@ All the brain can do:
 
 <!-- slide data-transition="concave" data-transition-speed="slow" -->
 
-## II. - Proprioception & Exteroception
+## II. - Exteroception & Compensation
+
+### II.A Exteroception vs. Proprioception
 
 <br>
 
@@ -209,11 +209,11 @@ ________________
 
 ### Example
 
-<img src="Shellder.png" style="maxheight: 900px; border:none" class="fragment fade-down"/>
+<img src="Haunter_sensory_inputs.png" style="maxheight: 500px; border:none" class="fragment fade-down"/>
 
-<!-- slide data-transition="zoom" data-transition-speed="slow" vertical=true -->
+<!-- slide data-transition="convex" data-transition-speed="slow" -->
 
-## I.B - Sammon's mapping
+### II.B - Compensated movements
 
 > The smaller the original distance between points is, the more preserved it is
 
