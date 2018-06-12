@@ -145,7 +145,7 @@ $$
 
 ##### *Based on* D. Philipona, J. O’Regan, and J. Nadal's 2003 article
 
-[Documentation](https://neurorobotics-project.readthedocs.io) / [Associated Jupyter Notebook](/ipynb/neurorobotics/Inferring_Space_from_Sensorimotor_Dependencies.html)
+[Documentation](https://neurorobotics-project.readthedocs.io) / [Associated Jupyter Notebook](/ipynb/neurorobotics/Inferring_Space_from_Sensorimotor_Dependencies.ipynb.html)
 
 
 </div>
@@ -458,6 +458,21 @@ class Organism1:
     self.dim_rigid_group = ...
 
     return self.dim_rigid_group, self.dim_extero, self.dim_env, self.dim_env_extero
+```
+
+<!-- slide data-transition="convex" data-transition-speed="slow" vertical=true data-background-image="http://younesse.net/images/pixel-light.jpg" -->
+
+```dot
+digraph {
+    rankdir=LR;
+    dim[label="get_dimensions"];
+    var[label="get_variations"];
+    sens[label="get_sensory_inputs"];
+    prop[label="get_proprioception"];
+    dim -> var, prop;
+    var -> sens;
+    prop -> sens;
+  }
 ```
 
 <!-- slide data-transition="convex" data-transition-speed="slow" vertical=true data-background-image="http://younesse.net/images/dark-background.jpg" -->

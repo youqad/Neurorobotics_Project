@@ -369,7 +369,7 @@ class Organism1:
                                  self.E_0+self.neighborhood_lin_approx(self.E_size))[~self.mask_proprio]
         for _ in range(self.nb_generating_motor_commands*self.nb_generating_env_positions)])
 
-  def get_dimensions(self, dim_red='PCA'):
+  def get_dimensions(self, dim_red='PCA', return_eigenvalues=False):
     """
     Compute and returns the estimated dimension of the rigid group of compensated movements
     and the estimated number of parameters needed to describe the 
@@ -397,6 +397,8 @@ class Organism1:
     ----------
     dim_red : {'PCA', 'MDA'}, optional
       Dimension reduction algorithm used to compute the number of degrees of freedom (``PCA`` by default).
+    return_eigenvalues : bool, optional
+      Returns the eigenvalues and their ratios \\\(λ_{i+1}/λ_i\\\) (``False`` by default).
 
     Returns
     -------
@@ -444,9 +446,17 @@ class Organism1:
     self.get_variations()
 
     # Now the number of degrees of freedom!
-    self.dim_env = dim_reduction_dict[dim_red](self.env_variations)
-    self.dim_extero = dim_reduction_dict[dim_red](self.mot_variations)
-    self.dim_env_extero = dim_reduction_dict[dim_red](self.env_mot_variations)
+    if not return_eigenvalues:
+      self.dim_env = dim_reduction_dict[dim_red](self.env_variations)
+      self.dim_extero = dim_reduction_dict[dim_red](self.mot_variations)
+      self.dim_env_extero = dim_reduction_dict[dim_red](self.env_mot_variations)
+    else:
+      # eig and rat: eigenvalues and their ratios
+      self.dim_env, (eig_env, rat_env) = dim_reduction_dict[dim_red](self.env_variations, return_eigenvalues=return_eigenvalues)
+      self.dim_extero, (eig_ext, rat_ext) = dim_reduction_dict[dim_red](self.mot_variations, return_eigenvalues=return_eigenvalues)
+      self.dim_env_extero, (eig_both, rat_both) = dim_reduction_dict[dim_red](self.env_mot_variations, return_eigenvalues=return_eigenvalues)
+
+    
     self.dim_rigid_group = self.dim_env+self.dim_extero-self.dim_env_extero
 
     self.dim_table = '''
@@ -463,7 +473,10 @@ class Organism1:
     self.dim_table += end_table
     self.self_table += end_table
 
-    return self.dim_rigid_group, self.dim_extero, self.dim_env, self.dim_env_extero
+    if not return_eigenvalues:
+      return self.dim_rigid_group, self.dim_extero, self.dim_env, self.dim_env_extero
+    else:
+      return self.dim_rigid_group, self.dim_extero, self.dim_env, self.dim_env_extero, [eig_env, eig_ext, eig_both], [rat_env, rat_ext, rat_both]
 
   def __str__(self):
     return self.self_table

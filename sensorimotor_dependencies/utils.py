@@ -32,7 +32,7 @@ def Rot(euler_angles):
 #------------------------------------------------------------
 # PCA to compute the degrees of freedom
 
-def PCA(data, return_matrix=False):
+def PCA(data, return_matrix=False, return_eigenvalues=False):
     """                                                                                       
     Principal Component Analysis (PCA) to compute the number of degrees of freedom.
 
@@ -41,7 +41,9 @@ def PCA(data, return_matrix=False):
     data : (n, k) array                                                                          
         Data points matrix (data points = row vectors in the matrix)
     return_matrix : bool
-        If True, returns the matrix of the data points projection on the eigenvectors                                                       
+        If True, returns the matrix of the data points projection on the eigenvectors
+    return_eigenvalues : bool, optional
+        Returns the eigenvalues and their ratios \\\(λ_{i+1}/λ_i\\\) (``False`` by default).                                                       
                                                                                                
     Returns                                   
     -------                                                                                
@@ -65,19 +67,26 @@ def PCA(data, return_matrix=False):
     eig_val, eig_vec = np.linalg.eigh(cov_matrix)
     
     # Compute the boundary index separating zero eigenvalues to non-zero ones
-    max_ratio = np.argmax([eig_val[i+1]/eig_val[i] for i in range(len(eig_val)-1)])
+    ratios = [eig_val[i+1]/eig_val[i] for i in range(len(eig_val)-1)]
+    max_ratio = np.argmax(ratios)
     
-    if return_matrix:
-        # Projection of the data points over the eigenvectors 
-        Proj = data.dot(eig_vec[:,max_ratio+1:])
-        return len(eig_val[max_ratio+1:]), Proj
+    if return_matrix or return_eigenvalues:
+        if return_matrix:
+            # Projection of the data points over the eigenvectors 
+            Proj = data.dot(eig_vec[:,max_ratio+1:])
+        if return_matrix and return_eigenvalues:
+            return len(eig_val[max_ratio+1:]), Proj, [eig_val, ratios]
+        elif return_matrix:
+            return len(eig_val[max_ratio+1:]), Proj
+        else:
+            return len(eig_val[max_ratio+1:]), [eig_val, ratios]
 
     return len(eig_val[max_ratio+1:])
 
 #------------------------------------------------------------
 # Classical multidimensional scaling (MDS)
 
-def MDS(data, return_matrix=False):
+def MDS(data, return_matrix=False, return_eigenvalues=False):
     """                                                                                       
     Classical multidimensional scaling (MDS) to compute the number of degrees of freedom
     cf. https://en.wikipedia.org/wiki/Multidimensional_scaling#Classical_multidimensional_scaling
@@ -87,7 +96,9 @@ def MDS(data, return_matrix=False):
     data : (n, k) array                                                                          
         Data points matrix (data points = row vectors in the matrix)
     return_matrix : bool
-        If True, returns the coordinate matrix                                                      
+        If True, returns the coordinate matrix
+    return_eigenvalues : bool, optional
+        Returns the eigenvalues and their ratios \\\(λ_{i+1}/λ_i\\\) (``False`` by default).                                                
                                                                                                
     Returns                                   
     -------                                                                               
@@ -120,14 +131,22 @@ def MDS(data, return_matrix=False):
     eig_val, eig_vec = np.linalg.eigh(B)
 
     # Compute the boundary index separating zero eigenvalues to non-zero ones
-    max_ratio = np.argmax([eig_val[i+1]/eig_val[i] for i in range(len(eig_val)-1)])
+    ratios = [eig_val[i+1]/eig_val[i] for i in range(len(eig_val)-1)]
+    max_ratio = np.argmax(ratios)
     
-    if return_matrix:
-        # Compute the coordinate matrix
-        Λ_sqrt  = np.diag(np.sqrt(eig_val[max_ratio+1:]))
-        E  = eig_vec[max_ratio+1:]
-        X  = E.dot(Λ_sqrt)
-        return len(eig_val[max_ratio+1:]), X
+    if return_matrix or return_eigenvalues:
+        if return_matrix:
+            # Compute the coordinate matrix
+            Λ_sqrt  = np.diag(np.sqrt(eig_val[max_ratio+1:]))
+            E  = eig_vec[max_ratio+1:]
+            X  = E.dot(Λ_sqrt)
+        if return_matrix and return_eigenvalues:
+            return len(eig_val[max_ratio+1:]), X, [eig_val, ratios]
+        elif return_matrix:
+            return len(eig_val[max_ratio+1:]), X
+        else:
+            return len(eig_val[max_ratio+1:]), [eig_val, ratios]
+
     
     return len(eig_val[max_ratio+1:])
 
