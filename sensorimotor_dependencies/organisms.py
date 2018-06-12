@@ -274,7 +274,7 @@ class Organism1:
     return np.concatenate((Sp, Se))
 
 
-  def get_proprioception(self):
+  def get_proprioception(self, return_trials=False):
     """
     Computes a mask indicating the sensory inputs the organism can reliably
     deem to be proprioceptive, since they remain silent when:
@@ -291,13 +291,16 @@ class Organism1:
     self.random.set_state(self.random_state)
 
     # Separating proprioceptive input from exteroceptive input
-    mask_proprio = np.array([
+    trials = np.array([
         self.get_sensory_inputs(self.M_0,
                                 self.E_0+self.random.normal(0, self.neighborhood_size, self.E_size))
         for _ in range(self.nb_generating_env_positions)])
-    self.mask_proprio = np.all(mask_proprio == mask_proprio[0, :], axis=0)
+    self.mask_proprio = np.all(mask_proprio == trials[0, :], axis=0)
 
     self.random_state = self.random.get_state()
+
+    if return_trials:
+      return trials
 
   def neighborhood_lin_approx(self, size):
     """
