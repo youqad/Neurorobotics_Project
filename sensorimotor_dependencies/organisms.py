@@ -283,10 +283,25 @@ class Organism1:
 
     Useful to separate proprioceptive inputs from exteroceptive ones
 
-    Example
-    -------
+    Examples
+    --------
     >>> O = organisms.Organism1(proprio=1, nb_joints=2, extero=1, nb_eyes=2); O.get_proprioception(); O.mask_proprio
     array([ True,  True, False, False], dtype=bool)
+
+    >>> from sensorimotor_dependencies import organisms; O = organisms.Organism1(); O.get_proprioception(return_trials=True)
+    array([[-0.07403972, -0.27175696, -0.57920141, ...,  0.19565543,
+            0.52651921,  0.43479947],
+          [-0.07403972, -0.27175696, -0.57920141, ...,  0.19565542,
+            0.52651921,  0.43479947],
+          [-0.07403972, -0.27175696, -0.57920141, ...,  0.19565543,
+            0.52651921,  0.43479947],
+          ...,
+          [-0.07403972, -0.27175696, -0.57920141, ...,  0.19565542,
+            0.52651921,  0.43479947],
+          [-0.07403972, -0.27175696, -0.57920141, ...,  0.19565542,
+            0.52651921,  0.43479947],
+          [-0.07403972, -0.27175696, -0.57920141, ...,  0.19565542,
+            0.5265192 ,  0.43479947]])
     """
     self.random.set_state(self.random_state)
 
