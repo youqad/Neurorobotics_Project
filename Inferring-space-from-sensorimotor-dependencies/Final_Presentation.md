@@ -428,12 +428,7 @@ class Organism1:
                neighborhood_size=neighborhood_size, sigma=σ):
 
     self.random = np.random.RandomState(seed)
-
-    #------------------------------------------------------------
-    # Random initializations / Setting attributes
-
     # [...]
-
     self.random_state = self.random.get_state()
 
   def get_sensory_inputs(self, M, E, QPaL=None):
@@ -450,7 +445,6 @@ class Organism1:
   def get_dimensions(self, dim_red='PCA'):
     self.get_proprioception()
     self.get_variations()
-
     # Now the number of degrees of freedom!
     self.dim_env = dim_reduction_dict[dim_red](self.env_variations)
     self.dim_extero = ...
@@ -459,8 +453,6 @@ class Organism1:
 
     return self.dim_rigid_group, self.dim_extero, self.dim_env, self.dim_env_extero
 ```
-
-<!-- slide data-transition="convex" data-transition-speed="slow" vertical=true data-background-image="http://younesse.net/images/pixel-light.jpg" -->
 
 ```dot
 digraph {
@@ -475,7 +467,16 @@ digraph {
   }
 ```
 
-<!-- slide data-transition="convex" data-transition-speed="slow" vertical=true data-background-image="http://younesse.net/images/dark-background.jpg" -->
+
+<!-- slide data-transition="convex" data-transition-speed="slow" vertical=true data-background-image=dark-background.jpg -->
+
+### Other organisms
+
+<br>
+
+<img src="organisms/table.png" style="maxheight: 900px; border:none"/>
+
+<!-- slide data-transition="convex" data-transition-speed="slow" vertical=true data-background-image=dark-background.jpg -->
 
 ```python
 >>>  O = organisms.Organism1(); O.get_dimensions()
@@ -500,37 +501,26 @@ Dimension for environment (e)|5
 Dimension for both (b)|11
 Dimension of group of compensated movements|4
 
+<!-- slide data-transition="convex" data-transition-speed="slow" -->
 
-<!-- slide data-transition="convex" data-transition-speed="slow" vertical=true data-background-image=dark-background.jpg -->
+## Some results
 
-# EMPTY
+<style type="text/css">
+  .gist {margin:auto !important; width:1050px !important;}
+  .gist-file
+  .gist-data {max-height: 400px;max-width: 1050px;}
+</style>
 
-<!-- slide data-transition="convex" data-transition-speed="slow" vertical=true data-background-image=dark-background.jpg -->
+Varying `retina_size` (called `var`) values for different random seeds.
 
-# EMPTY
+<script src="https://gist.github.com/youqad/cffb73ffb6df0075f46729583de9e1d8.js"></script>
 
+<script src="https://gist.github.com/youqad/f2c55b956c8934edc13e4f1d1527f310.js"></script>
 
-<!-- slide data-transition="convex" data-transition-speed="slow" vertical=true data-background-image=dark-background.jpg -->
+<!-- slide data-transition="concave" data-transition-speed="slow" vertical=true -->
 
-# EMPTY
+<script src="https://gist.github.com/youqad/387c08299fe88468f5ef22b3a5994180.js"></script>
 
-
-<!-- slide data-transition="concave" data-transition-speed="slow" -->
-
-# EMPTY
-
-
-<!-- slide data-transition="concave" data-transition-speed="slow" -->
-
-# EMPTY
-
-<!-- slide data-transition="convex" data-transition-speed="slow" data-background-image=dark-background.jpg vertical=true -->
-
-# EMPTY
-
-<!-- slide data-transition="convex" data-transition-speed="slow" data-background-image=dark-background.jpg vertical=true -->
-
-# EMPTY
 
 <!-- slide  data-transition="convex" data-transition-speed="slow" -->
 

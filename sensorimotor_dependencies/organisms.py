@@ -441,6 +441,9 @@ class Organism1:
     Dimension for environment (e)|5
     Dimension for both (b)|11
     Dimension of group of compensated movements|4
+
+    >>> print(organisms.Organism1(extero=1).get_dimensions(return_eigenvalues=True))
+    (1, 1, 1, 1, [array([  5.28255070e-33,   1.23259516e-32]), array([  7.29495097e-33,   8.04960107e-33]), array([  7.26535685e-33,   7.52677159e-33])], [[2.333333333333333], [1.103448275862069], [1.035980991174474]])
     """
     self.get_proprioception()
     self.get_variations()
