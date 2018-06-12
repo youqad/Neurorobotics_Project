@@ -6,7 +6,7 @@ $$\underbrace{\begin{pmatrix}
 \end{pmatrix}}_{\in \; \mathfrak{M}_{s,1}(\mathbb R)}$$
 
 ```dot
-digraph G {
+digraph {
     rankdir=LR;
     dim[label="get_dimensions"];
     var[label="get_variations"];
