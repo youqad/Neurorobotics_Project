@@ -117,7 +117,7 @@ html_theme_options = {
     'header_links' : [
         ('Home', 'index', False, 'home'),
         ("GitHub", "https://github.com/youqad/Neurorobotics_Project", True, 'link'),
-        ("Slides", " http://younesse.net/assets/Slides/Inferring-space-from-sensorimotor-dependencies/Final_Presentation.html", True, 'slideshow')
+        ("Slides", "http://younesse.net/assets/Slides/Inferring-space-from-sensorimotor-dependencies/Final_Presentation.html", True, 'slideshow'),
         ("Overview", "http://younesse.net/Neurorobotics_Project/", True, 'launch')
     ],
 
