@@ -295,7 +295,7 @@ class Organism1:
         self.get_sensory_inputs(self.M_0,
                                 self.E_0+self.random.normal(0, self.neighborhood_size, self.E_size))
         for _ in range(self.nb_generating_env_positions)])
-    self.mask_proprio = np.all(mask_proprio == trials[0, :], axis=0)
+    self.mask_proprio = np.all(trials == trials[0, :], axis=0)
 
     self.random_state = self.random.get_state()
 
