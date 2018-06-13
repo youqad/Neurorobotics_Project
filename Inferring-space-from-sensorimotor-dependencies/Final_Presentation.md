@@ -145,7 +145,7 @@ $$
 
 ##### *Based on* D. Philipona, J. O’Regan, and J. Nadal's 2003 article
 
-[Documentation](https://neurorobotics-project.readthedocs.io) / [Associated Jupyter Notebook](/ipynb/neurorobotics/Inferring_Space_from_Sensorimotor_Dependencies.ipynb.html)
+[Documentation](https://neurorobotics-project.readthedocs.io) / [Associated Jupyter Notebook](/ipynb/neurorobotics/Project_playground.html)
 
 
 </div>
@@ -164,7 +164,7 @@ ____
 
 ### III. Algorithm
 
-### V. Simulations and Beyond
+### IV. Simulations and Beyond
 
 </div>
 
@@ -175,7 +175,7 @@ ____
 
 <span class="fragment fade-down highlight-red" data-fragment-index="1">high-dimensional sensory input vector</span><span class="fragment fade-down highlight-green" data-fragment-index="2">$\qquad \overset{\text{Brain}}{\rightsquigarrow} \qquad \underbrace{\textit{space, attributes, ...}}_{\text{easier to visualize}}$</span>
 
-<img src="intro_drawing.png" alt="Problem statement" style="max-height: 900px; border:none" class="fragment fade-in" data-fragment-index="3"/>
+<img src="intro_drawing.png" alt="Problem statement" style="max-height: 900px; border:none" class="fragment fade-in" data-fragment-index="1"/>
 
 <!-- slide data-transition="zoom" data-transition-speed="slow" vertical=true -->
 

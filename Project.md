@@ -1,3 +1,28 @@
+---
+title: "[Final Project] Inferring Space from Sensorimotor Dependencies"
+author:
+- 'Kexin Ren'
+- 'Younesse Kaddar'
+date: 2018-06-11
+tags:
+  - project
+  - tutorial
+  - exercise
+  - robotics
+  - neuroscience
+  - neuro-robotique
+  - neurorobotics
+  - Khamassi
+abstract: 'Final Project: Inferring Space from Sensorimotor Dependencies.'
+---
+
+[Documentation](https://neurorobotics-project.readthedocs.io/en/latest/)|[Slides](http://younesse.net/assets/Slides/Inferring-space-from-sensorimotor-dependencies/Final_Presentation.html)|[iPython notebook](http://younesse.net/ipynb/neurorobotics/Project_playground.html)
+-|-|-
+||||
+
+[![Documentation Status](https://readthedocs.org/projects/neurorobotics-project/badge/?version=latest)](https://neurorobotics-project.readthedocs.io/en/latest/?badge=latest)
+
+
 ## Approach
 
 We consider an organism equipped with sensors, and try to infer the notion of "physical space" from its sensorimotor dependencies while assuming no prior knowledge of the organism about the fact there exists any such thing as a surrounding physical space.
