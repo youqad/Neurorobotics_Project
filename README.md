@@ -36,11 +36,6 @@ abstract: 'Final Project: Inferring Space from Sensorimotor Dependencies'
 - [Slides](http://younesse.net/assets/Slides/Inferring-space-from-sensorimotor-dependencies/Final_Presentation.html)
 - [![Documentation Status](https://readthedocs.org/projects/neurorobotics-project/badge/?version=latest)](https://neurorobotics-project.readthedocs.io/en/latest/?badge=latest) [Documentation](https://neurorobotics-project.readthedocs.io)
 
-$$
-\newcommand{\T}{ {\raise{0.7ex}{\intercal}}}
-$$
-
-
 ## The Algorithm
 
 1. One gets rid of proprioceptive inputs by noting that these don't change when no motor command is issued and the environment changes, contrary to exteroceptive inputs.
