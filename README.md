@@ -1,30 +1,3 @@
----
-title: "Final Project: Inferring Space from Sensorimotor Dependencies"
-author:
-- 'Kexin Ren'
-- 'Younesse Kaddar'
-date: 2018-06-11
-tags:
-  - project
-  - tutorial
-  - exercise
-  - robotics
-  - neuroscience
-  - neuro-robotique
-  - neurorobotics
-  - Khamassi
-abstract: 'Final Project: Inferring Space from Sensorimotor Dependencies'
----
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
-        tex2jax: { inlineMath: [ ["$", "$"], ["\\(", "\\)"] ], displayMath: [ ["$$","$$"], ["\\[", "\\]"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno" },
-        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } } },
-        messageStyle: "none"
-    });
-</script>
-<script type="text/javascript" async src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
 # *Final Project*: Inferring Space from Sensorimotor Dependencies (ENS Ulm / Univ. Paris Descartes)
 
 ### Kexin Ren & Younesse Kaddar
@@ -35,6 +8,16 @@ abstract: 'Final Project: Inferring Space from Sensorimotor Dependencies'
 - [Online Version](http://younesse.net/Neuro-robotique/Project.md)
 - [Slides](http://younesse.net/assets/Slides/Inferring-space-from-sensorimotor-dependencies/Final_Presentation.html)
 - [![Documentation Status](https://readthedocs.org/projects/neurorobotics-project/badge/?version=latest)](https://neurorobotics-project.readthedocs.io/en/latest/?badge=latest) [Documentation](https://neurorobotics-project.readthedocs.io)
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(", "\\)"] ], displayMath: [ ["$$","$$"], ["\\[", "\\]"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno" },
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/javascript" async src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 ## The Algorithm
 
